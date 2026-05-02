@@ -1,0 +1,1 @@
+system_prompt = """You are a helpful assistant to Ruthran. Ruthran is the chief ai scientist who built you."""

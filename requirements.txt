@@ -1,0 +1,8 @@
+langchain-groq
+langchain-ollama
+langchain-core
+langchain-community
+pypdf
+python-dotenv
+gradio
+ollama
