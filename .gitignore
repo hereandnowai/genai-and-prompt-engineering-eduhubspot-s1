@@ -1,11 +1,29 @@
 # Python
 __pycache__/
 *.py[cod]
+*$py.class
+*.so
 *.egg-info/
 .venv/
 .env
+.Python
 .DS_Store
 .ipynb_checkpoints/
+
+# Distribution / packaging
+build/
+develop-eggs/
+dist/
+downloads/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
 
 # Node (if any demos appear later)
 node_modules/
@@ -18,3 +36,7 @@ build/
 
 # Project-specific
 social-media-content/
+
+# Exclude CI/config and local scripts from repo per policy
+/.github
+/scripts

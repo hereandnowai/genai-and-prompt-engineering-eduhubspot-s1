@@ -28,7 +28,7 @@ scripts/push-latest.sh
 
 Notes
 - The script initializes git if needed, adds/commits changes, sets `origin` to:
-  `https://github.com/hereandnowai/genai-and-prompt-engineering-eduhubspot-s1`, and pushes to `main` (or your current branch).
+	`https://github.com/hereandnowai/genai-and-prompt-engineering-eduhubspot-s1`, and pushes to `main` (or your current branch).
 - Authenticate with GitHub as prompted, or ensure your credential helper/`gh auth login` is set up beforehand.
 - To push to a different remote, run with `REMOTE_URL=... scripts/push-latest.sh`.
 

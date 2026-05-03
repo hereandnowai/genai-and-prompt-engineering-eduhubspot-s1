@@ -6,3 +6,26 @@ pypdf
 python-dotenv
 gradio
 ollama
+google-generativeai
+
+# requirements.txt
+# Core LangChain packages — use the split-package structure (v0.3+)
+langchain==0.3.7
+langchain-core==0.3.21
+langchain-community==0.3.7
+
+# Google AI integration (LLM + embeddings)
+langchain-google-genai==2.0.7
+google-generativeai==0.8.3
+
+# Vector store
+chromadb==0.5.23
+
+# PDF parsing backend used by PyPDFLoader
+pypdf==4.3.1
+
+# UI
+gradio==5.8.0
+
+# Environment variable management
+python-dotenv==1.0.1

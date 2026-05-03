@@ -1,0 +1,1 @@
+I want to build a RAG chatbot application. This application should take PDFs as input and answer questions based on the uploaded documents. The LangChain framework in Python will be used, along with the Gemini API from Google AI Studio for the model. The UI will use Gradio, and Gemma embeddings will be used for the embedding model. Could you help with building this chatbot?
