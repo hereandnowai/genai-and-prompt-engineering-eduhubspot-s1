@@ -1,0 +1,682 @@
+{
+  "what-is-ai-quiz": {
+    "id": "what-is-ai-quiz",
+    "title": "What is AI? Quiz",
+    "moduleId": "what-is-ai",
+    "xpReward": 50,
+    "questions": [
+      {
+        "id": "q1",
+        "question": "What is Artificial Intelligence at its core?",
+        "options": [
+          "A robot that looks like a human",
+          "The science of making computers think and act like humans",
+          "A database of human knowledge",
+          "A programming language for creating games"
+        ],
+        "correct": 1,
+        "explanation": "AI is the science of making computers think and act like humans — learning from data, recognizing patterns, and making decisions without explicit programming for every scenario."
+      },
+      {
+        "id": "q2",
+        "question": "Which of the following is an example of Narrow AI?",
+        "options": [
+          "A robot that can do everything a human can do",
+          "An AI smarter than any human",
+          "A face recognition system on your smartphone",
+          "A theoretical AI with general intelligence"
+        ],
+        "correct": 2,
+        "explanation": "Face recognition is a great example of Narrow AI — it's designed for one specific task. All real-world AI today is Narrow AI."
+      },
+      {
+        "id": "q3",
+        "question": "What is 'training' in the context of AI?",
+        "options": [
+          "Teaching human trainers how to use AI",
+          "Writing code for AI systems manually",
+          "The process of feeding data to an AI model so it learns patterns",
+          "Running AI on powerful computers"
+        ],
+        "correct": 2,
+        "explanation": "Training is how AI learns — by processing large amounts of data and adjusting its internal parameters to recognize patterns and improve predictions."
+      },
+      {
+        "id": "q4",
+        "question": "What is 'inference' in AI?",
+        "options": [
+          "When scientists make guesses about AI",
+          "When a trained AI applies its knowledge to make predictions on new data",
+          "The training process for neural networks",
+          "A type of AI programming language"
+        ],
+        "correct": 1,
+        "explanation": "Inference is when a trained AI model applies what it learned to new, unseen data — making predictions, classifications, or decisions."
+      },
+      {
+        "id": "q5",
+        "question": "Which of the following is NOT an everyday example of AI?",
+        "options": [
+          "Email spam filters",
+          "Netflix movie recommendations",
+          "A calculator performing arithmetic",
+          "Google Maps finding the best route"
+        ],
+        "correct": 2,
+        "explanation": "A calculator follows fixed rules and doesn't learn — it's just arithmetic, not AI. The other examples all use machine learning to improve over time."
+      }
+    ]
+  },
+  "machine-learning-quiz": {
+    "id": "machine-learning-quiz",
+    "title": "Machine Learning Quiz",
+    "moduleId": "machine-learning",
+    "xpReward": 75,
+    "questions": [
+      {
+        "id": "q1",
+        "question": "What makes Machine Learning different from traditional programming?",
+        "options": [
+          "ML uses faster computers",
+          "ML learns rules from data instead of being explicitly programmed",
+          "ML only works with images",
+          "ML requires internet access"
+        ],
+        "correct": 1,
+        "explanation": "In traditional programming, humans write explicit rules. In ML, the computer discovers rules by learning from data — a fundamental shift in how we build software."
+      },
+      {
+        "id": "q2",
+        "question": "Which type of learning uses labeled training examples?",
+        "options": [
+          "Unsupervised Learning",
+          "Reinforcement Learning",
+          "Supervised Learning",
+          "Transfer Learning"
+        ],
+        "correct": 2,
+        "explanation": "Supervised Learning trains on labeled data — pairs of inputs and correct outputs. The model learns to map inputs to outputs based on these examples."
+      },
+      {
+        "id": "q3",
+        "question": "What is 'overfitting' in machine learning?",
+        "options": [
+          "When a model is too simple to learn anything",
+          "When a model learns training data too well and fails on new data",
+          "When training takes too long",
+          "When the model uses too much memory"
+        ],
+        "correct": 1,
+        "explanation": "Overfitting happens when a model memorizes training data instead of learning generalizable patterns — like a student who memorizes answers without understanding the concepts."
+      },
+      {
+        "id": "q4",
+        "question": "How does Reinforcement Learning teach AI?",
+        "options": [
+          "By providing labeled examples",
+          "By clustering similar data",
+          "Through rewards and penalties for actions taken",
+          "By copying human behavior directly"
+        ],
+        "correct": 2,
+        "explanation": "Reinforcement Learning trains AI through trial and error with rewards — like training a dog with treats. The AI explores, takes actions, receives rewards or penalties, and learns to maximize rewards."
+      },
+      {
+        "id": "q5",
+        "question": "What are 'features' in machine learning?",
+        "options": [
+          "Special capabilities of the AI model",
+          "The input variables used by the model to make predictions",
+          "The output of a trained model",
+          "Features of the programming language used"
+        ],
+        "correct": 1,
+        "explanation": "Features are the input variables the model uses — like age, income, and credit history for a loan prediction model. Good feature selection is crucial for model performance."
+      }
+    ]
+  },
+  "deep-learning-quiz": {
+    "id": "deep-learning-quiz",
+    "title": "Deep Learning Quiz",
+    "moduleId": "deep-learning",
+    "xpReward": 100,
+    "questions": [
+      {
+        "id": "q1",
+        "question": "What does 'deep' mean in Deep Learning?",
+        "options": [
+          "The AI is very smart",
+          "The network processes data very slowly",
+          "The neural network has many layers",
+          "The model understands emotions deeply"
+        ],
+        "correct": 2,
+        "explanation": "Deep refers to the depth of the neural network — the number of layers. Deep networks have many layers, allowing them to learn very complex representations."
+      },
+      {
+        "id": "q2",
+        "question": "Which architecture is best suited for processing images?",
+        "options": [
+          "RNN (Recurrent Neural Network)",
+          "CNN (Convolutional Neural Network)",
+          "Transformer",
+          "Decision Tree"
+        ],
+        "correct": 1,
+        "explanation": "CNNs use convolutional operations that are specially designed to detect spatial patterns (edges, textures, shapes) in images, making them the go-to architecture for vision tasks."
+      },
+      {
+        "id": "q3",
+        "question": "What enabled the deep learning revolution around 2012?",
+        "options": [
+          "Better programming languages",
+          "Internet becoming faster",
+          "Big data, powerful GPUs, and algorithmic innovations",
+          "New mathematical theorems"
+        ],
+        "correct": 2,
+        "explanation": "The deep learning revolution was enabled by three converging factors: availability of big data, powerful GPU computing for parallel training, and key algorithmic improvements like ReLU and better training techniques."
+      },
+      {
+        "id": "q4",
+        "question": "What is backpropagation?",
+        "options": [
+          "Running data through the network forward",
+          "The algorithm that propagates errors backward to train neural networks",
+          "A technique for compressing neural networks",
+          "A method for generating new data"
+        ],
+        "correct": 1,
+        "explanation": "Backpropagation computes gradients by propagating the error signal backward through the network layers, allowing us to calculate how each weight contributed to the error and adjust it accordingly."
+      },
+      {
+        "id": "q5",
+        "question": "What is AlphaFold known for achieving with deep learning?",
+        "options": [
+          "Beating chess champions",
+          "Creating realistic images",
+          "Predicting protein 3D structures",
+          "Translating all human languages"
+        ],
+        "correct": 2,
+        "explanation": "AlphaFold (DeepMind) used deep learning to predict protein 3D structures with remarkable accuracy — a 50-year-old grand challenge in biology. It's considered one of the greatest scientific achievements enabled by AI."
+      }
+    ]
+  },
+  "generative-ai-quiz": {
+    "id": "generative-ai-quiz",
+    "title": "Generative AI Quiz",
+    "moduleId": "generative-ai",
+    "xpReward": 75,
+    "questions": [
+      {
+        "id": "q1",
+        "question": "What makes Generative AI different from other AI?",
+        "options": [
+          "It works faster than other AI",
+          "It creates new original content rather than just classifying or predicting",
+          "It requires less training data",
+          "It can only generate text"
+        ],
+        "correct": 1,
+        "explanation": "Generative AI creates new, original content — text, images, audio, video, code. Unlike discriminative AI that classifies existing content, generative AI produces something new."
+      },
+      {
+        "id": "q2",
+        "question": "What is a 'prompt' in the context of Generative AI?",
+        "options": [
+          "A hardware component of AI systems",
+          "The training data used to build the model",
+          "The text instruction you give an AI to guide what it creates",
+          "A type of neural network layer"
+        ],
+        "correct": 2,
+        "explanation": "A prompt is the input text you provide to guide the AI's generation. The quality and specificity of your prompt significantly affects the quality of the generated output."
+      },
+      {
+        "id": "q3",
+        "question": "Which of these tools uses Generative AI to create images?",
+        "options": [
+          "Google Search",
+          "Excel",
+          "DALL-E and Midjourney",
+          "Zoom"
+        ],
+        "correct": 2,
+        "explanation": "DALL-E (OpenAI) and Midjourney are generative AI image tools that create original images from text descriptions. They use diffusion models trained on vast image datasets."
+      },
+      {
+        "id": "q4",
+        "question": "What is 'latent space' in generative AI?",
+        "options": [
+          "Unused storage space in AI servers",
+          "A compressed mathematical representation where similar concepts are close together",
+          "The delay between prompt and response",
+          "The maximum length of generated content"
+        ],
+        "correct": 1,
+        "explanation": "Latent space is the compressed internal representation learned by generative models. In this space, similar concepts cluster together, allowing the model to interpolate and generate variations."
+      },
+      {
+        "id": "q5",
+        "question": "What is a GAN?",
+        "options": [
+          "A type of hardware accelerator for AI",
+          "A network that translates languages",
+          "Two neural networks (generator and discriminator) competing to improve generation quality",
+          "A database of pre-made AI responses"
+        ],
+        "correct": 2,
+        "explanation": "GANs (Generative Adversarial Networks) consist of two competing networks: a Generator that creates content and a Discriminator that judges if it's real or fake. This competition drives both to improve."
+      }
+    ]
+  },
+  "llm-quiz": {
+    "id": "llm-quiz",
+    "title": "Large Language Models Quiz",
+    "moduleId": "large-language-models",
+    "xpReward": 100,
+    "questions": [
+      {
+        "id": "q1",
+        "question": "What basic task do LLMs learn during pre-training?",
+        "options": [
+          "Generating images from text",
+          "Translating between languages",
+          "Predicting the next word (token) in a sequence",
+          "Classifying emails as spam or not"
+        ],
+        "correct": 2,
+        "explanation": "LLMs are trained on next-token prediction — given a sequence of words, predict what comes next. This simple objective, scaled to billions of examples, produces surprisingly powerful language understanding."
+      },
+      {
+        "id": "q2",
+        "question": "What is a 'context window' in an LLM?",
+        "options": [
+          "The user interface of the AI chat app",
+          "The maximum amount of text an LLM can consider at once",
+          "The time it takes to generate a response",
+          "The number of languages the model knows"
+        ],
+        "correct": 1,
+        "explanation": "The context window is the model's working memory — how much text it can see and process at once. Longer context windows allow the model to consider more information when generating responses."
+      },
+      {
+        "id": "q3",
+        "question": "What does RLHF stand for?",
+        "options": [
+          "Rapid Large-scale Human Feedback",
+          "Reinforcement Learning from Human Feedback",
+          "Recursive Language and Human Fine-tuning",
+          "Real-time Learning with Human Filters"
+        ],
+        "correct": 1,
+        "explanation": "RLHF (Reinforcement Learning from Human Feedback) is the technique that makes LLMs helpful and harmless. Human raters rank responses, training a reward model that guides the LLM toward better outputs."
+      },
+      {
+        "id": "q4",
+        "question": "What are 'emergent capabilities' in LLMs?",
+        "options": [
+          "Bugs that appear in large models",
+          "Abilities that suddenly appear as model scale increases, not present in smaller models",
+          "Features added by human programmers",
+          "Languages the model learns automatically"
+        ],
+        "correct": 1,
+        "explanation": "Emergent capabilities are surprising abilities that appear in large models but not small ones — like few-shot learning, reasoning, and code generation. They emerge unpredictably from scale, not explicit programming."
+      },
+      {
+        "id": "q5",
+        "question": "Which architecture powers modern LLMs like GPT and Claude?",
+        "options": [
+          "Convolutional Neural Network (CNN)",
+          "Recurrent Neural Network (RNN)",
+          "Transformer",
+          "Support Vector Machine (SVM)"
+        ],
+        "correct": 2,
+        "explanation": "The Transformer architecture (introduced in 'Attention Is All You Need', 2017) is the foundation of all modern LLMs. Its attention mechanism enables efficient parallel processing and long-range dependency capture."
+      }
+    ]
+  },
+  "prompt-engineering-quiz": {
+    "id": "prompt-engineering-quiz",
+    "title": "Prompt Engineering Quiz",
+    "moduleId": "prompt-engineering",
+    "xpReward": 63,
+    "questions": [
+      {
+        "id": "q1",
+        "question": "What is the main goal of prompt engineering?",
+        "options": [
+          "Building AI models from scratch",
+          "Designing effective inputs to get the best outputs from AI models",
+          "Programming AI hardware",
+          "Cleaning training datasets"
+        ],
+        "correct": 1,
+        "explanation": "Prompt engineering is about crafting effective inputs (prompts) that guide AI models to produce the most useful, accurate, and relevant outputs possible."
+      },
+      {
+        "id": "q2",
+        "question": "What is 'few-shot prompting'?",
+        "options": [
+          "Using a very small AI model",
+          "Asking the AI to answer quickly",
+          "Providing a few examples of input-output pairs before your actual request",
+          "Limiting the AI's response length"
+        ],
+        "correct": 2,
+        "explanation": "Few-shot prompting means including a small number of examples in your prompt to show the AI exactly what format or style you want in the response — dramatically improving consistency."
+      },
+      {
+        "id": "q3",
+        "question": "What does 'chain of thought' prompting do?",
+        "options": [
+          "Connects multiple AI models together",
+          "Asks AI to reason step by step before answering, improving accuracy",
+          "Creates a conversation history",
+          "Generates multiple responses simultaneously"
+        ],
+        "correct": 1,
+        "explanation": "Chain of thought prompting ('Let's think step by step') encourages the AI to reason through problems incrementally before giving a final answer — significantly improving performance on complex reasoning tasks."
+      },
+      {
+        "id": "q4",
+        "question": "What is a 'system prompt'?",
+        "options": [
+          "The computer's operating system instructions",
+          "Instructions at the start of a conversation that set the AI's persona and behavior",
+          "A prompt that crashes the AI",
+          "The final message in a conversation"
+        ],
+        "correct": 1,
+        "explanation": "A system prompt provides context, persona, and behavioral constraints at the beginning of a conversation — telling the AI who it is and how it should behave throughout the interaction."
+      },
+      {
+        "id": "q5",
+        "question": "Which prompt is most likely to get the best response from an AI?",
+        "options": [
+          "'Tell me about nutrition'",
+          "'What food should I eat?'",
+          "'As a registered dietitian, explain the key macronutrients (protein, carbs, fat) for a beginner trying to lose weight, with simple food examples for each'",
+          "'Nutrition stuff please'"
+        ],
+        "correct": 2,
+        "explanation": "The specific, contextual prompt with role assignment, clear scope, target audience, and required format will get the most useful response. Specificity is the key to great prompts."
+      }
+    ]
+  },
+  "ai-ethics-quiz": {
+    "id": "ai-ethics-quiz",
+    "title": "AI Ethics Quiz",
+    "moduleId": "ai-ethics",
+    "xpReward": 75,
+    "questions": [
+      {
+        "id": "q1",
+        "question": "What is 'bias' in AI systems?",
+        "options": [
+          "When AI models are too slow",
+          "When AI systems produce systematically unfair results due to biased training data",
+          "When AI disagrees with human opinions",
+          "When AI models use too much memory"
+        ],
+        "correct": 1,
+        "explanation": "AI bias occurs when training data reflects historical inequalities or prejudices, causing the model to make systematically unfair decisions — often without the developers intending it."
+      },
+      {
+        "id": "q2",
+        "question": "What does AI 'alignment' mean?",
+        "options": [
+          "Making sure AI servers are properly configured",
+          "Aligning text to the left in AI interfaces",
+          "Ensuring AI systems pursue goals that are truly beneficial to humans",
+          "Synchronizing multiple AI models"
+        ],
+        "correct": 2,
+        "explanation": "AI alignment is the challenge of ensuring that AI systems, as they become more powerful, reliably pursue goals that align with human values and intentions — one of the most important problems in AI safety research."
+      },
+      {
+        "id": "q3",
+        "question": "What is a 'deepfake'?",
+        "options": [
+          "A type of deep learning architecture",
+          "AI-generated synthetic media that realistically depicts people doing or saying things they didn't",
+          "A deeply hidden layer in neural networks",
+          "A fake AI company"
+        ],
+        "correct": 1,
+        "explanation": "Deepfakes use generative AI to create convincing fake videos or audio of real people. They pose serious risks to trust, privacy, and the integrity of information — a major AI ethics concern."
+      },
+      {
+        "id": "q4",
+        "question": "Why is AI transparency important?",
+        "options": [
+          "So AI code can be copied freely",
+          "To make AI screens see-through",
+          "So people can understand why AI made a decision and identify mistakes or bias",
+          "It's not actually important"
+        ],
+        "correct": 2,
+        "explanation": "Transparency — being able to understand why an AI made a decision — is critical for accountability. Without it, we can't identify bias, fix mistakes, or hold systems responsible for their decisions."
+      },
+      {
+        "id": "q5",
+        "question": "Which organization is known for AI safety research focused on beneficial AI?",
+        "options": [
+          "NASA",
+          "WHO",
+          "Anthropic",
+          "FIFA"
+        ],
+        "correct": 2,
+        "explanation": "Anthropic (creator of Claude) is specifically focused on AI safety research — developing techniques to make AI systems more reliable, interpretable, and aligned with human values."
+      }
+    ]
+  },
+  "nlp-quiz": {
+    "id": "nlp-quiz",
+    "title": "Natural Language Processing Quiz",
+    "moduleId": "nlp",
+    "xpReward": 88,
+    "questions": [
+      {
+        "id": "q1",
+        "question": "What does NLP stand for?",
+        "options": [
+          "Neural Language Protocol",
+          "Natural Language Processing",
+          "Network Learning Procedure",
+          "Numeric Language Pattern"
+        ],
+        "correct": 1,
+        "explanation": "NLP stands for Natural Language Processing — the branch of AI focused on enabling computers to understand, interpret, and generate human language."
+      },
+      {
+        "id": "q2",
+        "question": "What is 'tokenization' in NLP?",
+        "options": [
+          "Encrypting text for security",
+          "Breaking text into smaller units (tokens) that the model can process",
+          "Converting text to speech",
+          "Translating between languages"
+        ],
+        "correct": 1,
+        "explanation": "Tokenization breaks text into tokens — words, subwords, or characters. This is the first step in NLP: converting raw text into a format the model can process mathematically."
+      },
+      {
+        "id": "q3",
+        "question": "What are 'word embeddings'?",
+        "options": [
+          "Words embedded in images",
+          "Numerical representations of words that capture their meaning and relationships",
+          "Words hidden in encrypted data",
+          "Special formatting applied to text"
+        ],
+        "correct": 1,
+        "explanation": "Word embeddings map words to vectors in a high-dimensional space where similar words are close together. 'King' - 'Man' + 'Woman' ≈ 'Queen' is a famous example of embedded semantic relationships."
+      },
+      {
+        "id": "q4",
+        "question": "What is 'sentiment analysis'?",
+        "options": [
+          "Analyzing the grammar of a sentence",
+          "Translating text between languages",
+          "Determining the emotional tone (positive, negative, neutral) of text",
+          "Counting words in a document"
+        ],
+        "correct": 2,
+        "explanation": "Sentiment analysis classifies the emotional tone of text — positive, negative, or neutral. It's used widely in social media monitoring, customer feedback analysis, and market research."
+      },
+      {
+        "id": "q5",
+        "question": "What was the key innovation of the Transformer architecture for NLP?",
+        "options": [
+          "Using more layers than previous models",
+          "The attention mechanism enabling parallel processing and capturing long-range dependencies",
+          "Processing text faster than before",
+          "Using smaller neural networks"
+        ],
+        "correct": 1,
+        "explanation": "The Transformer's attention mechanism allows the model to consider relationships between all tokens simultaneously (not sequentially like RNNs), capturing long-range dependencies and enabling massive parallelization."
+      }
+    ]
+  },
+  "computer-vision-quiz": {
+    "id": "computer-vision-quiz",
+    "title": "Computer Vision Quiz",
+    "moduleId": "computer-vision",
+    "xpReward": 88,
+    "questions": [
+      {
+        "id": "q1",
+        "question": "How does a computer 'see' an image?",
+        "options": [
+          "Through a camera attached to the CPU",
+          "As a grid of numerical pixel values",
+          "By comparing it to stored photographs",
+          "Using infrared sensors"
+        ],
+        "correct": 1,
+        "explanation": "Computers represent images as grids of numbers — each pixel is a value from 0-255 for brightness. CNNs process these numerical grids through mathematical operations to detect patterns and objects."
+      },
+      {
+        "id": "q2",
+        "question": "What does a CNN's convolutional layer do?",
+        "options": [
+          "Stores image data",
+          "Compresses images to save space",
+          "Applies filters to detect local features like edges, textures, and shapes",
+          "Converts images to text"
+        ],
+        "correct": 2,
+        "explanation": "Convolutional layers apply learnable filters across the image, detecting local patterns — edges in early layers, textures and shapes in middle layers, and high-level objects in deeper layers."
+      },
+      {
+        "id": "q3",
+        "question": "What is 'object detection' in computer vision?",
+        "options": [
+          "Classifying the entire image with one label",
+          "Finding and locating specific objects within an image with bounding boxes",
+          "Removing objects from images",
+          "Counting pixels in an image"
+        ],
+        "correct": 1,
+        "explanation": "Object detection goes beyond classification — it finds and localizes multiple objects in an image, drawing bounding boxes around each one. YOLO and Faster R-CNN are popular object detection architectures."
+      },
+      {
+        "id": "q4",
+        "question": "What is semantic segmentation used for?",
+        "options": [
+          "Adding text captions to images",
+          "Classifying every pixel in an image into semantic categories",
+          "Compressing image files",
+          "Enhancing image resolution"
+        ],
+        "correct": 1,
+        "explanation": "Semantic segmentation classifies every single pixel in an image — crucial for self-driving cars that need to distinguish road, sidewalk, vehicles, and pedestrians at the pixel level."
+      },
+      {
+        "id": "q5",
+        "question": "What is CLIP known for in computer vision?",
+        "options": [
+          "Cropping images automatically",
+          "Connecting visual and language understanding for zero-shot image classification",
+          "Creating video from still images",
+          "Detecting faces in real-time"
+        ],
+        "correct": 1,
+        "explanation": "CLIP (Contrastive Language-Image Pretraining, OpenAI) learns visual-language correspondences from image-text pairs, enabling zero-shot image classification — describing a new category in text and classifying without training examples."
+      }
+    ]
+  },
+  "neural-networks-quiz": {
+    "id": "neural-networks-quiz",
+    "title": "Neural Networks Quiz",
+    "moduleId": "neural-networks",
+    "xpReward": 88,
+    "questions": [
+      {
+        "id": "q1",
+        "question": "What is the basic unit of a neural network?",
+        "options": [
+          "A pixel",
+          "A database entry",
+          "A neuron (node)",
+          "A file"
+        ],
+        "correct": 2,
+        "explanation": "The neuron (or node) is the basic unit of a neural network. It receives inputs, applies a calculation (weighted sum + activation), and passes the result to the next layer."
+      },
+      {
+        "id": "q2",
+        "question": "What is a 'weight' in a neural network?",
+        "options": [
+          "The file size of the model",
+          "A number controlling how strongly one neuron influences another",
+          "The speed of the network",
+          "The number of layers"
+        ],
+        "correct": 1,
+        "explanation": "Weights are the learnable parameters of a neural network — numbers that control the strength of connections between neurons. Training adjusts weights to minimize prediction error."
+      },
+      {
+        "id": "q3",
+        "question": "What is a 'loss function'?",
+        "options": [
+          "A function that deletes old data",
+          "A measure of how wrong the network's predictions are",
+          "The function that generates outputs",
+          "A security feature of neural networks"
+        ],
+        "correct": 1,
+        "explanation": "The loss function measures prediction error — how far the model's outputs are from the correct answers. Training aims to minimize this loss by adjusting weights through gradient descent."
+      },
+      {
+        "id": "q4",
+        "question": "What role does an activation function play?",
+        "options": [
+          "It starts the training process",
+          "It adds non-linearity, allowing networks to learn complex patterns",
+          "It activates the GPU for faster training",
+          "It determines the number of layers"
+        ],
+        "correct": 1,
+        "explanation": "Activation functions (ReLU, Sigmoid, Tanh) add non-linearity to neural networks. Without them, any number of layers would just reduce to a single linear equation, severely limiting what the network can learn."
+      },
+      {
+        "id": "q5",
+        "question": "What is 'gradient descent'?",
+        "options": [
+          "A method for downloading AI models",
+          "A safety feature that slows AI down",
+          "The optimization algorithm that minimizes loss by adjusting weights step by step",
+          "A data preprocessing technique"
+        ],
+        "correct": 2,
+        "explanation": "Gradient descent is the optimization algorithm used to train neural networks. It computes the gradient (slope) of the loss function and adjusts weights in the direction that reduces loss — iteratively finding the minimum."
+      }
+    ]
+  }
+}

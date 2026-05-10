@@ -1,0 +1,412 @@
+[
+  {
+    "id": "what-is-ai",
+    "title": "What is AI?",
+    "icon": "🤖",
+    "color": "#00d4ff",
+    "difficulty": "Beginner",
+    "estimatedTime": "15 min",
+    "xp": 100,
+    "description": "Discover the fascinating world of Artificial Intelligence — what it is, how it works, and why it matters.",
+    "analogy": "Think of AI like teaching a very smart child. You show it thousands of examples — pictures of cats, stories, games — and over time, it learns the patterns and can recognize a cat it has never seen before.",
+    "overview": "Artificial Intelligence (AI) is the science of making computers think and act like humans. AI systems learn from data, recognize patterns, make decisions, and solve problems — all without being explicitly programmed for every single scenario.",
+    "keyConcepts": [
+      { "term": "Algorithm", "definition": "A step-by-step set of instructions a computer follows to solve a problem — like a recipe for your brain." },
+      { "term": "Data", "definition": "The raw information AI learns from — could be text, images, videos, or numbers." },
+      { "term": "Training", "definition": "The process of feeding data to an AI model so it can learn patterns and improve over time." },
+      { "term": "Inference", "definition": "When a trained AI applies what it learned to make predictions or decisions on new data." },
+      { "term": "Model", "definition": "The AI brain — a mathematical structure that stores patterns learned from data." }
+    ],
+    "sections": [
+      {
+        "title": "The Big Picture",
+        "content": "AI is not magic — it's mathematics. At its core, AI is about finding patterns in large amounts of data and using those patterns to make predictions or decisions. Every time Netflix recommends a show, Google Maps finds the best route, or Spotify curates your playlist, AI is at work."
+      },
+      {
+        "title": "Types of AI",
+        "content": "There are three main types: Narrow AI (designed for one specific task, like face recognition), General AI (theoretical AI with human-level intelligence), and Super AI (hypothetical AI smarter than any human). Today, all real-world AI is Narrow AI."
+      },
+      {
+        "title": "How AI Learns",
+        "content": "AI learns through exposure to examples. Show it 10,000 pictures of cats and dogs with labels, and it will learn to tell them apart. The more quality data it sees, the better it gets — just like how humans get better at something with practice."
+      }
+    ],
+    "realWorldExamples": [
+      "Voice assistants (Siri, Alexa, Google Assistant)",
+      "Spam filters in your email inbox",
+      "Face unlock on your smartphone",
+      "Product recommendations on Amazon",
+      "Fraud detection in banking"
+    ],
+    "quiz": "what-is-ai-quiz"
+  },
+  {
+    "id": "machine-learning",
+    "title": "Machine Learning",
+    "icon": "🧠",
+    "color": "#7c3aed",
+    "difficulty": "Beginner",
+    "estimatedTime": "20 min",
+    "xp": 150,
+    "description": "Understand how machines learn from data without being explicitly programmed for every situation.",
+    "analogy": "Imagine learning to ride a bike. Nobody gave you a manual with 10,000 rules. You fell, adjusted, and gradually your brain learned balance. Machine Learning works the same way — learning from mistakes and improving.",
+    "overview": "Machine Learning (ML) is a subset of AI where computers learn from experience (data) without being explicitly programmed. Instead of writing rules, we give the machine data and let it discover the rules on its own.",
+    "keyConcepts": [
+      { "term": "Supervised Learning", "definition": "Training with labeled examples — like a teacher showing you correct answers so you learn what's right." },
+      { "term": "Unsupervised Learning", "definition": "Finding hidden patterns in data without labels — like sorting a pile of unknown objects by shape or color." },
+      { "term": "Reinforcement Learning", "definition": "Learning through trial and error with rewards — like training a dog with treats." },
+      { "term": "Features", "definition": "The input variables the model uses to make predictions — like age, income, and location to predict a credit score." },
+      { "term": "Overfitting", "definition": "When a model memorizes training data too well and fails on new data — like a student who memorizes answers instead of understanding concepts." }
+    ],
+    "sections": [
+      {
+        "title": "The Learning Process",
+        "content": "In Machine Learning, we split data into training and testing sets. The model learns from training data, then we evaluate how well it performs on test data it has never seen. This tells us if it truly learned or just memorized."
+      },
+      {
+        "title": "Three Types of Learning",
+        "content": "Supervised learning uses labeled data (input-output pairs). Unsupervised learning finds hidden patterns in unlabeled data. Reinforcement learning uses rewards and penalties to guide behavior — this is how game-playing AIs like AlphaGo were built."
+      },
+      {
+        "title": "Real Algorithms",
+        "content": "Linear regression predicts numbers. Decision trees make choices based on questions. Random forests combine many trees for better accuracy. K-means clusters similar data together. These are the tools ML engineers use every day."
+      }
+    ],
+    "realWorldExamples": [
+      "Email spam detection",
+      "Medical image diagnosis",
+      "Stock price prediction",
+      "Customer churn prediction",
+      "Weather forecasting"
+    ],
+    "quiz": "machine-learning-quiz"
+  },
+  {
+    "id": "deep-learning",
+    "title": "Deep Learning",
+    "icon": "🔬",
+    "color": "#06b6d4",
+    "difficulty": "Intermediate",
+    "estimatedTime": "25 min",
+    "xp": 200,
+    "description": "Explore how neural networks with multiple layers unlock superhuman pattern recognition abilities.",
+    "analogy": "Deep Learning is like peeling an onion. Each layer peels back more complexity. The first layer sees edges in an image, the next sees shapes, then features, then finally a face. Many layers = deep understanding.",
+    "overview": "Deep Learning is a specialized form of Machine Learning that uses neural networks with many layers (hence 'deep'). These deep networks can automatically learn incredibly complex patterns from raw data — powering everything from image recognition to language generation.",
+    "keyConcepts": [
+      { "term": "Neural Network", "definition": "A system inspired by the human brain, made of interconnected nodes (neurons) organized in layers." },
+      { "term": "Layer", "definition": "A group of neurons that process information together. Deep networks have many layers stacked on top of each other." },
+      { "term": "Activation Function", "definition": "A mathematical function that determines whether a neuron should fire — adding non-linearity to the network." },
+      { "term": "Backpropagation", "definition": "The algorithm that trains neural networks by propagating errors backward through layers to adjust weights." },
+      { "term": "GPU Training", "definition": "Using graphics processing units for parallel computation — the reason deep learning became practical." }
+    ],
+    "sections": [
+      {
+        "title": "Why 'Deep'?",
+        "content": "The 'deep' in deep learning refers to the number of layers in a neural network. Traditional ML might use 1-2 layers. Deep learning models can have dozens, hundreds, or even thousands of layers, allowing them to learn extremely complex representations."
+      },
+      {
+        "title": "The Revolution",
+        "content": "Deep learning exploded in 2012 when AlexNet crushed the ImageNet competition. Since then, it has transformed computer vision, speech recognition, natural language processing, and drug discovery. The key enablers were big data, powerful GPUs, and algorithmic innovations."
+      },
+      {
+        "title": "Architectures",
+        "content": "CNNs (Convolutional Neural Networks) excel at images. RNNs (Recurrent Neural Networks) handle sequences. Transformers revolutionized language understanding. GANs (Generative Adversarial Networks) generate synthetic data. Each architecture is a powerful tool designed for specific types of data."
+      }
+    ],
+    "realWorldExamples": [
+      "Self-driving car perception systems",
+      "Medical imaging (cancer detection)",
+      "Real-time speech recognition",
+      "Image style transfer and filters",
+      "Protein structure prediction (AlphaFold)"
+    ],
+    "quiz": "deep-learning-quiz"
+  },
+  {
+    "id": "neural-networks",
+    "title": "Neural Networks",
+    "icon": "⚡",
+    "color": "#f59e0b",
+    "difficulty": "Intermediate",
+    "estimatedTime": "20 min",
+    "xp": 175,
+    "description": "Understand how networks of artificial neurons work together to process and learn from information.",
+    "analogy": "Your brain has 86 billion neurons connected by trillions of synapses. Artificial neural networks are a tiny digital imitation — far simpler, but inspired by the same idea: information flows through connected nodes, and connections strengthen with use.",
+    "overview": "Neural networks are the backbone of modern AI. They are mathematical systems made of connected nodes arranged in layers. Information flows through these nodes, getting transformed at each layer until the network produces an output — a classification, a prediction, or a generated response.",
+    "keyConcepts": [
+      { "term": "Neuron (Node)", "definition": "The basic unit of a neural network — it receives inputs, applies a calculation, and passes the result forward." },
+      { "term": "Weight", "definition": "A number that controls how strongly one neuron influences another — adjusted during training to improve accuracy." },
+      { "term": "Bias", "definition": "An extra value added to a neuron's input, allowing the network to shift its decision boundary." },
+      { "term": "Loss Function", "definition": "A measure of how wrong the network's predictions are — the number we're trying to minimize during training." },
+      { "term": "Gradient Descent", "definition": "The optimization algorithm that minimizes loss by adjusting weights step by step in the direction of steepest decrease." }
+    ],
+    "sections": [
+      {
+        "title": "Anatomy of a Network",
+        "content": "Every neural network has three types of layers: the input layer (receives raw data), hidden layers (transform the data), and the output layer (produces the final result). Data flows forward through these layers — this is called a forward pass."
+      },
+      {
+        "title": "Training a Network",
+        "content": "Training involves showing the network examples, measuring its error with a loss function, and using backpropagation + gradient descent to adjust weights. After thousands of iterations over the training data (called epochs), the network gradually improves."
+      },
+      {
+        "title": "Activation Functions",
+        "content": "Without activation functions, neural networks would just be a chain of linear equations. Functions like ReLU, Sigmoid, and Tanh add non-linearity, allowing networks to learn complex, curved decision boundaries. ReLU (Rectified Linear Unit) is by far the most popular today."
+      }
+    ],
+    "realWorldExamples": [
+      "Handwriting recognition on postal envelopes",
+      "Voice-to-text transcription",
+      "Credit card fraud detection",
+      "Movie recommendation engines",
+      "Game-playing AI (Chess, Go, StarCraft)"
+    ],
+    "quiz": "neural-networks-quiz"
+  },
+  {
+    "id": "generative-ai",
+    "title": "Generative AI",
+    "icon": "✨",
+    "color": "#ec4899",
+    "difficulty": "Beginner",
+    "estimatedTime": "18 min",
+    "xp": 150,
+    "description": "Discover how AI creates original content — images, music, text, code, and more — from scratch.",
+    "analogy": "A generative AI is like a musician who has listened to millions of songs. They haven't memorized any single song — but they've internalized the patterns of melody, rhythm, and harmony so deeply that they can compose original music that sounds natural and beautiful.",
+    "overview": "Generative AI refers to AI systems that can create new, original content — text, images, audio, video, code, and more. Unlike traditional AI that classifies or predicts, generative AI creates. It does this by learning the underlying patterns and structure of training data, then sampling from that learned distribution.",
+    "keyConcepts": [
+      { "term": "Generator", "definition": "The part of a generative model that creates new content — like an artist with a blank canvas." },
+      { "term": "Discriminator", "definition": "In GANs, the component that evaluates whether generated content is real or fake — acting as the art critic." },
+      { "term": "Diffusion Model", "definition": "A type of generative model that learns to reverse a noise-adding process to create realistic images (used by DALL-E, Stable Diffusion)." },
+      { "term": "Latent Space", "definition": "A compressed mathematical representation of data where similar concepts are close together — the AI's imagination space." },
+      { "term": "Prompt", "definition": "The text instruction you give a generative AI to guide what it creates." }
+    ],
+    "sections": [
+      {
+        "title": "How Generation Works",
+        "content": "Generative models learn the statistical patterns of their training data. For images, they learn how pixels relate to each other. For text, they learn how words follow each other. At generation time, they sample from these learned patterns to create something new — statistically similar but not identical to training data."
+      },
+      {
+        "title": "Key Architectures",
+        "content": "GANs (two networks competing), VAEs (variational autoencoders that encode and decode), Diffusion Models (that progressively denoise), and Transformer-based LLMs (that predict next tokens) are the main families of generative AI. Each has different strengths and applications."
+      },
+      {
+        "title": "The Creative Revolution",
+        "content": "Generative AI is transforming creative industries. Designers use Midjourney for concept art. Writers use GPT for drafts. Developers use Copilot for code. Musicians use AI for composition. This is both an exciting opportunity and a challenge for human creators."
+      }
+    ],
+    "realWorldExamples": [
+      "ChatGPT and Claude generating text",
+      "DALL-E and Midjourney creating images",
+      "GitHub Copilot writing code",
+      "Suno and Udio composing music",
+      "Runway generating video from text"
+    ],
+    "quiz": "generative-ai-quiz"
+  },
+  {
+    "id": "large-language-models",
+    "title": "Large Language Models",
+    "icon": "💬",
+    "color": "#10b981",
+    "difficulty": "Intermediate",
+    "estimatedTime": "22 min",
+    "xp": 200,
+    "description": "Understand the technology behind ChatGPT, Claude, and Gemini — the models reshaping how we interact with computers.",
+    "analogy": "An LLM is like a student who has read the entire internet. They haven't memorized everything word-for-word, but they've absorbed so many patterns of language, facts, reasoning, and writing styles that they can discuss almost any topic fluently.",
+    "overview": "Large Language Models (LLMs) are massive AI models trained on enormous amounts of text data. They learn to predict the next word in a sequence, and through this simple objective, they develop surprisingly sophisticated abilities: reasoning, coding, translation, summarization, and conversation.",
+    "keyConcepts": [
+      { "term": "Token", "definition": "The basic unit LLMs process — roughly equivalent to a word or word-fragment. GPT-4 processes up to 128,000 tokens at once." },
+      { "term": "Context Window", "definition": "The maximum amount of text an LLM can 'see' and consider at one time — its working memory." },
+      { "term": "Parameters", "definition": "The numbers stored in the model that encode everything it has learned. GPT-4 reportedly has over 1 trillion parameters." },
+      { "term": "Pre-training", "definition": "Training on massive amounts of general text data — giving the model broad knowledge." },
+      { "term": "Fine-tuning", "definition": "Additional training on specific data to make the model better at particular tasks or behaviors." }
+    ],
+    "sections": [
+      {
+        "title": "The Transformer Revolution",
+        "content": "LLMs are built on the Transformer architecture, introduced by Google in 2017 ('Attention Is All You Need'). The key innovation is the attention mechanism — it allows the model to weigh the importance of different words when processing any given word, capturing long-range dependencies in text."
+      },
+      {
+        "title": "Scale is All You Need",
+        "content": "The most surprising discovery in LLM research is that scale works. As you add more parameters and more training data, models gain qualitatively new abilities — called emergent capabilities. GPT-3 could suddenly do few-shot learning. GPT-4 can pass professional exams. More scale = new surprises."
+      },
+      {
+        "title": "RLHF: Making AI Helpful",
+        "content": "Raw LLMs generate text but don't follow instructions well. RLHF (Reinforcement Learning from Human Feedback) solves this — human raters rank responses, training a reward model, which then guides the LLM to produce helpful, harmless, and honest outputs. This is what turned GPT-3 into ChatGPT."
+      }
+    ],
+    "realWorldExamples": [
+      "ChatGPT (OpenAI) — conversational AI assistant",
+      "Claude (Anthropic) — safety-focused AI assistant",
+      "Gemini (Google) — multimodal AI system",
+      "Llama (Meta) — open-source LLM",
+      "Mistral — efficient open-source LLM"
+    ],
+    "quiz": "llm-quiz"
+  },
+  {
+    "id": "prompt-engineering",
+    "title": "Prompt Engineering",
+    "icon": "🎯",
+    "color": "#f97316",
+    "difficulty": "Beginner",
+    "estimatedTime": "15 min",
+    "xp": 125,
+    "description": "Master the art and science of communicating with AI to get the best possible responses.",
+    "analogy": "Prompt engineering is like giving directions to a very smart but extremely literal assistant. 'Go somewhere nice for dinner' gets you a random restaurant. 'Find a quiet Italian restaurant within 1km with pasta options under $20 open right now' gets you exactly what you want.",
+    "overview": "Prompt engineering is the practice of designing effective inputs (prompts) for AI language models to elicit the best possible outputs. It's part art, part science — combining an understanding of how LLMs work with creativity and iteration.",
+    "keyConcepts": [
+      { "term": "Prompt", "definition": "The input text you give an AI model — your question, instruction, or context." },
+      { "term": "Zero-shot", "definition": "Asking the AI to do a task without providing any examples — just instructions." },
+      { "term": "Few-shot", "definition": "Providing a few examples of input-output pairs before your actual request — showing the AI what you want." },
+      { "term": "Chain of Thought", "definition": "Asking the AI to reason step by step before giving an answer — dramatically improves accuracy on complex tasks." },
+      { "term": "System Prompt", "definition": "Instructions given at the start of a conversation that set the AI's persona, constraints, and behavior." }
+    ],
+    "sections": [
+      {
+        "title": "Why Prompts Matter",
+        "content": "The same AI model can give radically different answers to the same question depending on how it's phrased. 'Explain quantum physics' vs 'Explain quantum physics like I'm 10 years old using a simple analogy' produces completely different responses. Good prompts unlock the model's full capability."
+      },
+      {
+        "title": "Core Techniques",
+        "content": "Be specific and detailed. Provide context and examples. Break complex tasks into steps. Ask for reasoning (chain of thought). Specify the format you want. Set the right persona ('You are an expert nutritionist...'). Use delimiters to separate sections. Iterate based on outputs."
+      },
+      {
+        "title": "Advanced Strategies",
+        "content": "Role prompting assigns the AI a specific persona. Tree of thought asks AI to explore multiple solution paths. Self-consistency generates multiple answers and takes the majority vote. Retrieval-augmented generation (RAG) provides relevant documents as context. These techniques push frontier model performance."
+      }
+    ],
+    "realWorldExamples": [
+      "Writing better ChatGPT queries for research",
+      "Creating AI system prompts for customer service bots",
+      "Getting AI to write code in specific styles",
+      "Using AI for structured data extraction",
+      "Automated prompt optimization pipelines"
+    ],
+    "quiz": "prompt-engineering-quiz"
+  },
+  {
+    "id": "ai-ethics",
+    "title": "AI Ethics",
+    "icon": "⚖️",
+    "color": "#ef4444",
+    "difficulty": "Beginner",
+    "estimatedTime": "20 min",
+    "xp": 150,
+    "description": "Explore the critical ethical questions surrounding AI — bias, fairness, safety, and the future of humanity.",
+    "analogy": "AI ethics is like traffic laws for self-driving cars. The technology is powerful and useful, but without rules, standards, and oversight, it becomes dangerous. Ethics provides the framework to ensure AI benefits everyone, not just a few.",
+    "overview": "As AI becomes more powerful and integrated into society, ethical questions become critical. AI Ethics examines fairness, accountability, transparency, privacy, safety, and societal impact. Understanding these issues is essential for anyone working with or affected by AI — which is everyone.",
+    "keyConcepts": [
+      { "term": "Bias", "definition": "When an AI system produces systematically unfair results due to biased training data or design choices." },
+      { "term": "Fairness", "definition": "The principle that AI systems should treat all groups equally and not discriminate." },
+      { "term": "Transparency", "definition": "Making AI systems understandable and explainable — being able to know why an AI made a decision." },
+      { "term": "AI Safety", "definition": "Research ensuring AI systems behave as intended and don't cause unintended harm — especially as systems become more capable." },
+      { "term": "Alignment", "definition": "The challenge of ensuring AI systems pursue goals that are truly beneficial to humans." }
+    ],
+    "sections": [
+      {
+        "title": "The Bias Problem",
+        "content": "AI systems can inherit biases from their training data. Facial recognition systems have higher error rates for darker skin tones. Hiring algorithms trained on historical data perpetuate gender biases. These aren't intentional — but they cause real harm. Diverse teams, careful data curation, and bias auditing are essential."
+      },
+      {
+        "title": "Privacy and Surveillance",
+        "content": "AI enables unprecedented surveillance capabilities. Facial recognition can track people in public spaces. LLMs trained on personal data may leak private information. Data used to train AI is often collected without meaningful consent. Privacy-preserving AI techniques and strong regulations are active research areas."
+      },
+      {
+        "title": "The Long-term Perspective",
+        "content": "As AI systems become more capable, questions about long-term safety become critical. How do we ensure powerful AI systems remain aligned with human values? Organizations like Anthropic, DeepMind Safety, and the Center for AI Safety are actively researching these questions — they may be the most important problems of our time."
+      }
+    ],
+    "realWorldExamples": [
+      "Biased hiring algorithms at tech companies",
+      "Deepfakes used for misinformation",
+      "AI-powered surveillance in public spaces",
+      "Autonomous weapons systems",
+      "AI replacing jobs in various industries"
+    ],
+    "quiz": "ai-ethics-quiz"
+  },
+  {
+    "id": "nlp",
+    "title": "Natural Language Processing",
+    "icon": "📝",
+    "color": "#8b5cf6",
+    "difficulty": "Intermediate",
+    "estimatedTime": "20 min",
+    "xp": 175,
+    "description": "Learn how AI understands, interprets, and generates human language — the tech behind every voice assistant and chatbot.",
+    "analogy": "NLP is like teaching a foreign student your language. First they learn individual words (tokenization). Then grammar rules (parsing). Then meaning (semantics). Then context and nuance (pragmatics). And finally, they can have a real conversation — just like modern NLP systems.",
+    "overview": "Natural Language Processing (NLP) is the branch of AI focused on enabling computers to understand, interpret, and generate human language. It powers search engines, voice assistants, chatbots, translation services, and summarization tools — making computers fluent in human communication.",
+    "keyConcepts": [
+      { "term": "Tokenization", "definition": "Breaking text into smaller units (tokens) — words, subwords, or characters — that the model can process." },
+      { "term": "Embeddings", "definition": "Numerical representations of words or sentences that capture their meaning — similar words have similar vectors." },
+      { "term": "Sentiment Analysis", "definition": "Determining the emotional tone of text — positive, negative, or neutral." },
+      { "term": "Named Entity Recognition", "definition": "Identifying and classifying named entities in text — people, organizations, locations, dates." },
+      { "term": "Attention Mechanism", "definition": "The key innovation in Transformers — allows the model to focus on relevant parts of input when processing each word." }
+    ],
+    "sections": [
+      {
+        "title": "From Words to Meaning",
+        "content": "Language is incredibly complex. Words have multiple meanings (bank = riverbank or financial bank). Meaning depends on context. Sarcasm, idioms, and cultural references add layers of complexity. NLP has evolved from simple keyword matching to deep contextual understanding through decades of research."
+      },
+      {
+        "title": "The Transformer Era",
+        "content": "Before Transformers, NLP used RNNs that processed text sequentially. Transformers process all tokens simultaneously using attention, capturing relationships across the entire text at once. BERT (2018) revolutionized NLP with bidirectional understanding. GPT series took this further with generative capabilities."
+      },
+      {
+        "title": "Core NLP Tasks",
+        "content": "Machine translation (Google Translate), text classification (spam detection), question answering (search engines), text summarization (news aggregators), text generation (writing assistants), and speech recognition (Siri, Alexa) — all built on NLP foundations that have dramatically improved with deep learning."
+      }
+    ],
+    "realWorldExamples": [
+      "Google Translate and DeepL translation",
+      "Siri and Alexa voice assistants",
+      "Grammarly writing assistance",
+      "Customer service chatbots",
+      "Sentiment analysis of social media"
+    ],
+    "quiz": "nlp-quiz"
+  },
+  {
+    "id": "computer-vision",
+    "title": "Computer Vision",
+    "icon": "👁️",
+    "color": "#14b8a6",
+    "difficulty": "Intermediate",
+    "estimatedTime": "22 min",
+    "xp": 175,
+    "description": "Explore how AI interprets and understands the visual world — from face recognition to autonomous vehicles.",
+    "analogy": "Teaching a computer to see is like teaching a newborn to understand the visual world. First it recognizes basic shapes and edges. Then textures. Then objects. Then scenes. Then it can understand complex situations — all through millions of examples.",
+    "overview": "Computer Vision (CV) is the field of AI that enables computers to interpret and understand visual information from images and videos. Using deep learning, CV systems can recognize objects, detect faces, read text, understand medical scans, and even perceive 3D scenes — often surpassing human performance.",
+    "keyConcepts": [
+      { "term": "Image Classification", "definition": "Assigning a label to an entire image — 'this is a dog', 'this is a cat'." },
+      { "term": "Object Detection", "definition": "Finding and locating specific objects within an image, drawing bounding boxes around them." },
+      { "term": "Semantic Segmentation", "definition": "Classifying every pixel in an image — used in self-driving cars to distinguish road, pedestrians, and vehicles." },
+      { "term": "Convolutional Layer", "definition": "A neural network layer that applies filters to detect features like edges, textures, and shapes in images." },
+      { "term": "Feature Map", "definition": "The output of a convolutional layer — a representation of detected features at each location in the image." }
+    ],
+    "sections": [
+      {
+        "title": "How Computers See",
+        "content": "Computers see images as grids of numbers — each pixel is a value from 0-255 for brightness (grayscale) or three values for RGB color. CNNs process these grids through convolutional layers that detect progressively complex features: edges → shapes → textures → objects → scenes."
+      },
+      {
+        "title": "The CNN Architecture",
+        "content": "Convolutional Neural Networks are the workhorses of computer vision. They use convolution operations (sliding a filter across the image) to detect local features, pooling to reduce spatial dimensions, and fully-connected layers to produce final classifications. LeNet, AlexNet, VGG, ResNet, and EfficientNet are key milestones."
+      },
+      {
+        "title": "Modern Vision AI",
+        "content": "Vision Transformers (ViT) apply the Transformer architecture to images, treating patches as tokens. CLIP learns visual-textual correspondences, enabling zero-shot image classification. SAM (Segment Anything Model) can segment any object in any image. Multimodal models like GPT-4V and Gemini understand both images and text simultaneously."
+      }
+    ],
+    "realWorldExamples": [
+      "Face ID and face recognition systems",
+      "Self-driving car perception systems",
+      "Medical imaging diagnosis (radiology AI)",
+      "Quality control in manufacturing",
+      "Augmented reality and virtual try-on"
+    ],
+    "quiz": "computer-vision-quiz"
+  }
+]

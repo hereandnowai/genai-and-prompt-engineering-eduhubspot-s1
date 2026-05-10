@@ -1,0 +1,114 @@
+{
+  "suggestedPrompts": [
+    {
+      "id": "p1",
+      "category": "basics",
+      "text": "Explain AI like I'm a complete beginner",
+      "icon": "🌱"
+    },
+    {
+      "id": "p2",
+      "category": "basics",
+      "text": "What is the difference between AI and Machine Learning?",
+      "icon": "🤔"
+    },
+    {
+      "id": "p3",
+      "category": "basics",
+      "text": "How does ChatGPT actually work?",
+      "icon": "💬"
+    },
+    {
+      "id": "p4",
+      "category": "concepts",
+      "text": "What is a neural network? Use a simple analogy",
+      "icon": "🧠"
+    },
+    {
+      "id": "p5",
+      "category": "concepts",
+      "text": "Why do AI models sometimes give wrong answers?",
+      "icon": "❓"
+    },
+    {
+      "id": "p6",
+      "category": "concepts",
+      "text": "What is prompt engineering and why does it matter?",
+      "icon": "🎯"
+    },
+    {
+      "id": "p7",
+      "category": "advanced",
+      "text": "Explain transformers and attention mechanisms simply",
+      "icon": "⚡"
+    },
+    {
+      "id": "p8",
+      "category": "advanced",
+      "text": "What makes GPT-4 different from GPT-3?",
+      "icon": "🚀"
+    },
+    {
+      "id": "p9",
+      "category": "ethics",
+      "text": "Is AI going to take my job?",
+      "icon": "💼"
+    },
+    {
+      "id": "p10",
+      "category": "ethics",
+      "text": "What are the dangers of generative AI?",
+      "icon": "⚠️"
+    },
+    {
+      "id": "p11",
+      "category": "practical",
+      "text": "How can I use AI to learn faster?",
+      "icon": "📚"
+    },
+    {
+      "id": "p12",
+      "category": "practical",
+      "text": "What AI tools should a beginner try first?",
+      "icon": "🛠️"
+    }
+  ],
+  "tutorResponses": {
+    "what is ai": {
+      "response": "Great question! 🤖 **Artificial Intelligence (AI)** is the science of making computers smart enough to do things that normally require human intelligence.\n\nThink of it this way: when you teach a child to recognize a cat, you show them lots of cats. The child learns the pattern — four legs, whiskers, pointy ears. AI works the same way! We show computers thousands of examples, and they learn to recognize patterns.\n\n**AI can:**\n- 🗣️ Understand and generate human language\n- 👁️ Recognize faces and objects in photos\n- 🎵 Compose music and generate art\n- ♟️ Play chess better than any human\n- 🏥 Help doctors detect diseases\n\n**The key insight:** AI doesn't follow hand-written rules. It *discovers* rules by itself from data. That's what makes it so powerful!\n\nWant me to explain any specific type of AI in more detail?",
+      "followUps": ["What is Machine Learning?", "How does AI learn?", "What are the types of AI?"]
+    },
+    "machine learning": {
+      "response": "Excellent! Let's dive into **Machine Learning** 🧠\n\nMachine Learning is a type of AI where computers learn from experience — just like humans do!\n\n**The old way (traditional programming):**\n> Human writes rules → Computer follows rules → Output\n\n**The Machine Learning way:**\n> Data + Examples → Computer finds rules → Output\n\n**A simple analogy:** Imagine learning to catch a ball. Nobody gave you a physics textbook. You practiced, failed, adjusted, and eventually your brain learned the patterns automatically. ML works exactly the same way!\n\n**Three main types:**\n1. **Supervised Learning** — Learning with labeled examples (like a teacher with answer keys)\n2. **Unsupervised Learning** — Finding hidden patterns in unlabeled data (like sorting mystery objects by similarity)\n3. **Reinforcement Learning** — Learning through rewards and penalties (like training a dog with treats! 🐕)\n\n**Real examples you use daily:**\n- 📧 Gmail spam filter\n- 🎬 Netflix recommendations\n- 🗺️ Google Maps route optimization\n- 💳 Bank fraud detection\n\nWhich type would you like to explore deeper?",
+      "followUps": ["What is supervised learning?", "What is reinforcement learning?", "How does Netflix know what I like?"]
+    },
+    "neural network": {
+      "response": "Let me explain **Neural Networks** in the most intuitive way possible! ⚡\n\n**The inspiration:** Your brain has ~86 billion neurons connected by trillions of synapses. When you learn something, those connections strengthen. Neural networks are a tiny digital imitation of this!\n\n**Structure of a neural network:**\n```\n[Input Layer] → [Hidden Layers] → [Output Layer]\n     |                |                  |\n  Raw data      Find patterns       Final answer\n```\n\n**How it works (pixel by pixel analogy):**\n1. **Input layer** receives raw data (say, pixel values of an image)\n2. **Hidden layers** detect patterns — first edges, then shapes, then features\n3. **Output layer** gives the final answer: \"This is a cat! 🐱\"\n\n**Key components:**\n- **Neurons (nodes)** — The basic units that process information\n- **Weights** — Numbers controlling connection strength (adjusted during training)\n- **Activation functions** — Add complexity and non-linearity\n- **Loss function** — Measures how wrong the prediction is\n\n**Training process:**\n1. Show network an example with the correct answer\n2. Measure the error (loss)\n3. Adjust weights to reduce error (backpropagation)\n4. Repeat millions of times\n5. 🎉 Trained network!\n\nThe more examples you train on, the smarter the network gets!",
+      "followUps": ["What is backpropagation?", "What are activation functions?", "How deep is deep learning?"]
+    },
+    "large language model": {
+      "response": "**Large Language Models (LLMs)** are the technology behind ChatGPT, Claude, and Gemini! Let me break it down 💬\n\n**What they are:**\nMassive AI models trained on enormous amounts of text — essentially, they've 'read' a huge chunk of the internet, books, and code.\n\n**The simple task they learn:**\nDuring training, LLMs practice one thing: **predict the next word**.\n\nGiven: *\"The cat sat on the...\"*\nPredict: *\"mat\"* (or *\"floor\"*, or *\"roof\"*...)\n\nAfter doing this billions of times, they develop surprisingly deep language understanding!\n\n**Key numbers (GPT-4 scale):**\n- 🗃️ ~1 trillion parameters (learned numbers)\n- 📚 Trained on terabytes of text\n- 🪟 128,000 token context window\n- ⚡ Transformer architecture\n\n**How they become helpful:**\nRaw LLMs are good at text completion but not great at following instructions. **RLHF** (Reinforcement Learning from Human Feedback) fixes this — human raters score responses, teaching the model to be helpful, harmless, and honest.\n\n**Why they're impressive:**\n- 🌍 Speak 100+ languages\n- 💻 Write and debug code\n- 📝 Summarize long documents\n- 🧮 Do complex reasoning\n- 🎭 Adopt different personas\n\nAmazing how 'predict next word' leads to all this, right?",
+      "followUps": ["What is the Transformer architecture?", "What is RLHF?", "What are tokens?"]
+    },
+    "generative ai": {
+      "response": "**Generative AI** is one of the most exciting developments in technology! ✨\n\n**What makes it 'generative'?**\nUnlike traditional AI that *classifies* (\"This is spam\") or *predicts* (\"Stock will go up\"), Generative AI *creates* brand new content — text, images, audio, video, code!\n\n**The musician analogy 🎵**\nImagine a musician who has listened to 10 million songs. They haven't memorized any single song — but they've internalized melody, rhythm, and harmony so deeply that they can compose original music that sounds natural and beautiful.\n\nGenerative AI does the same with data!\n\n**What it can create:**\n| Type | Examples |\n|------|----------|\n| 📝 Text | ChatGPT, Claude, Gemini |\n| 🖼️ Images | DALL-E, Midjourney, Stable Diffusion |\n| 🎵 Music | Suno, Udio, MusicLM |\n| 🎬 Video | Runway, Sora, Pika |\n| 💻 Code | GitHub Copilot, Claude, Cursor |\n\n**Key architectures:**\n- **GANs** — Two networks compete (Generator vs Discriminator)\n- **Diffusion Models** — Learn to reverse noise addition (used by DALL-E)\n- **Transformers** — Predict next token (used by GPT, Claude)\n- **VAEs** — Encode and decode through compressed space\n\n**The creative revolution:**\nGenerative AI is transforming every creative field — design, writing, music, film, code. It's a tool that amplifies human creativity!",
+      "followUps": ["How do image generators work?", "What are GANs?", "What is a diffusion model?"]
+    },
+    "deep learning": {
+      "response": "Let's explore **Deep Learning** — the technology behind the biggest AI breakthroughs! 🔬\n\n**What is 'deep' about it?**\nDeep Learning uses neural networks with *many layers* (hence 'deep'). While traditional ML might use 1-2 layers, deep learning models can have hundreds or even thousands!\n\n**The onion analogy 🧅**\nDeep Learning is like peeling an onion layer by layer:\n- **Layer 1:** Detects basic edges and lines\n- **Layer 2:** Combines edges into shapes\n- **Layer 3:** Combines shapes into textures\n- **Layer 4:** Recognizes object parts\n- **Final layer:** Says \"That's a face!\" 😊\n\n**Why it matters:**\nBefore deep learning, AI needed *human experts* to manually design features. Now, deep learning discovers features automatically from raw data!\n\n**The 2012 revolution:**\nWhen AlexNet (a deep CNN) dramatically outperformed all competitors on ImageNet, the AI world changed forever. The secret? Big data + GPU computing + smart architecture.\n\n**Key deep learning architectures:**\n- **CNNs** — Images and video 📸\n- **RNNs/LSTMs** — Sequential data and time series\n- **Transformers** — Language and everything else\n- **GANs** — Generating realistic content\n- **Diffusion Models** — High-quality image generation\n\n**Real-world impact:**\nDeep learning has achieved superhuman performance at image recognition, protein folding, game playing, and language understanding!",
+      "followUps": ["What is a CNN?", "What is a Transformer?", "What is GPU training?"]
+    },
+    "prompt engineering": {
+      "response": "**Prompt Engineering** is the skill of communicating effectively with AI! 🎯\n\n**Why it matters:**\nThe same AI gives radically different answers based on how you phrase your question. Prompt engineering is about unlocking the AI's full potential.\n\n**Bad vs Good prompts:**\n\n❌ *\"Tell me about nutrition\"*\n✅ *\"You are a registered dietitian. Explain the 3 macronutrients to a beginner trying to lose weight. Give one simple food example for each. Keep it under 200 words.\"*\n\n**Core techniques:**\n\n1. **Be specific** — The more detail, the better\n2. **Assign a role** — \"You are an expert...\" dramatically improves quality\n3. **Give examples (few-shot)** — Show don't tell\n4. **Think step by step** — Ask for chain-of-thought reasoning\n5. **Specify format** — \"Give me a bullet-point list\" or \"Write in markdown\"\n6. **Provide context** — Background information improves relevance\n\n**Advanced strategies:**\n- **Tree of Thought:** \"Explore 3 different approaches before choosing the best\"\n- **Self-consistency:** Generate multiple solutions, pick the most common\n- **RAG:** Provide relevant documents for the AI to reference\n- **Constitutional AI:** Build constraints into the system prompt\n\n**The simple rule:**\n> Imagine giving instructions to a very smart but extremely literal assistant. The more specific you are, the better the result! 🎯\n\nWant to practice writing better prompts together?",
+      "followUps": ["Show me examples of good prompts", "What is few-shot prompting?", "What is chain of thought?"]
+    },
+    "ai ethics": {
+      "response": "**AI Ethics** is one of the most important conversations of our time ⚖️\n\n**Why it matters:**\nAI is increasingly making decisions that affect real people — who gets a loan, who gets interviewed, what news you see, who gets bail. Getting this right is critical.\n\n**Key ethical issues:**\n\n🔴 **Bias and Fairness**\nAI learns from historical data, which often reflects historical biases. Facial recognition has higher error rates for darker skin tones. Hiring algorithms discriminate against women. These aren't intentional — but the harm is real.\n\n🔒 **Privacy**\nAI enables unprecedented surveillance. Facial recognition in public spaces, data collection without consent, models trained on private data. Who owns the data used to train AI?\n\n🤖 **Job Displacement**\nAI and automation are already transforming work. Some jobs disappear, new ones emerge. How do we support workers through this transition?\n\n💣 **Misuse and Deepfakes**\nGenerative AI makes it easy to create fake videos of real people, generate disinformation, and impersonate anyone. The potential for harm is significant.\n\n🧠 **AI Safety**\nAs AI becomes more capable, ensuring it remains aligned with human values becomes critical. This is an active research area with serious thinkers working on existential risks.\n\n**The key principle:**\nAI should be designed for everyone's benefit, not just the few. Diverse teams, transparent systems, and strong regulations are essential.\n\nWhat aspect of AI ethics interests you most?",
+      "followUps": ["What is AI bias?", "How can we make AI fairer?", "What is AI alignment?"]
+    },
+    "default": {
+      "response": "That's a great question about AI! Let me help you understand it. 🤖\n\nAI is a vast and fascinating field with many interconnected concepts. To give you the best explanation, I'll break things down step by step using simple language and real-world analogies.\n\n**What I can help you with:**\n- 🌱 Beginner AI concepts (What is AI, ML, Deep Learning)\n- 💬 How language models like ChatGPT work\n- ✨ Generative AI (image generation, text generation)\n- ⚖️ AI Ethics and safety\n- 🎯 Prompt Engineering techniques\n- 🧠 Neural Networks and their architecture\n- 👁️ Computer Vision\n- 📝 Natural Language Processing\n\nFeel free to ask me anything — there are no silly questions when it comes to learning AI!\n\n**Try asking:**\n- *\"Explain neural networks like I'm 10 years old\"*\n- *\"What's the difference between ChatGPT and Claude?\"*\n- *\"How do I start learning AI?\"*\n\nI'm here to make AI accessible and fun for everyone! 🚀",
+      "followUps": ["What is AI?", "How does ChatGPT work?", "Where should I start learning AI?"]
+    }
+  }
+}

@@ -1,0 +1,47 @@
+[
+  {
+    "id": "intro-to-ai",
+    "title": "What is AI?",
+    "description": "The fundamentals of Artificial Intelligence explained simply.",
+    "icon": "brain",
+    "estimate": "10 min",
+    "concepts": [
+      { "name": "Intelligence", "description": "The ability to learn and solve problems." },
+      { "name": "Algorithms", "description": "A set of rules for a computer to follow." }
+    ],
+    "explanation": "Imagine AI as a really smart helper that can learn tasks by looking at examples, just like you learned to recognize a cat versus a dog by seeing them in pictures.",
+    "analogy": "Think of AI like a digital apprentice. You don't give it every single instruction; you show it how to do things, and it figures out the patterns.",
+    "content": "Artificial Intelligence is the branch of computer science that builds machines to simulate human-like intelligence. It's not magic—it's math and data! Traditional software follows rigid rules (If A, then B). AI learns rules from data.",
+    "xp": 100
+  },
+  {
+    "id": "machine-learning",
+    "title": "Machine Learning",
+    "description": "Teaching computers to learn from data without being explicitly programmed.",
+    "icon": "zap",
+    "estimate": "15 min",
+    "concepts": [
+      { "name": "Data", "description": "The fuel for algorithms to learn." },
+      { "name": "Training", "description": "The process of showing data to a model." }
+    ],
+    "explanation": "Machine Learning (ML) is the specific technique that allows computers to get better at a task as they are exposed to more data.",
+    "analogy": "It's like teaching a child to recognize a 'Good' apple. You show them 100 good apples and 100 bad ones, and eventually, the child knows what to look for without you pointing it out.",
+    "content": "ML focuses on building systems that improve their performance over time. It's used in everything from Netflix recommendations to self-driving cars.",
+    "xp": 150
+  },
+  {
+    "id": "generative-ai",
+    "title": "Generative AI",
+    "description": "Creating new content like text, images, and music with AI.",
+    "icon": "pen-tool",
+    "estimate": "12 min",
+    "concepts": [
+      { "name": "LLMs", "description": "Large Language Models like Gemini or GPT." },
+      { "name": "Prompts", "description": "The instructions we give to GenAI." }
+    ],
+    "explanation": "Generative AI doesn't just analyze data; it uses what it has learned to create entirely new things that didn't exist before.",
+    "analogy": "If traditional AI is a librarian finding a book, Generative AI is the author writing a new one based on everything they've ever read.",
+    "content": "GenAI uses models trained on massive amounts of data to predict what comes next. In text, it's the most likely next word. In images, it's the colors of the next pixels.",
+    "xp": 200
+  }
+]

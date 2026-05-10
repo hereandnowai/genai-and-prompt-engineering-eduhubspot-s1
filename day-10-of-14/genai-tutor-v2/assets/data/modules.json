@@ -1,0 +1,11 @@
+{
+    "modules": [
+        {
+            "id": "ai-basics",
+            "title": "What is AI?",
+            "content": "AI is the simulation of human intelligence by machines.",
+            "analogy": "Like a calculator that can read your mind.",
+            "duration": "10 min"
+        }
+    ]
+}

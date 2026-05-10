@@ -1,0 +1,18 @@
+[
+  {
+    "id": "default-welcome",
+    "text": "Tell me about yourself! How can you help me learn AI?"
+  },
+  {
+    "id": "explain-llm",
+    "text": "What is a Large Language Model and how does it work?"
+  },
+  {
+    "id": "ai-ethics-intro",
+    "text": "Why is AI ethics important for beginners to know?"
+  },
+  {
+    "id": "future-of-ai",
+    "text": "What are some cool things AI might do in the next 10 years?"
+  }
+]

@@ -1,0 +1,15 @@
+{
+    "quizzes": [
+        {
+            "id": "q1",
+            "topic": "Fundamentals",
+            "questions": [
+                {
+                    "q": "What does LLM stand for?",
+                    "options": ["Large Language Model", "Limited Logic Machine", "Linear Light Movement"],
+                    "answer": 0
+                }
+            ]
+        }
+    ]
+}

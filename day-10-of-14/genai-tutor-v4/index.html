@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en" data-theme="dark" data-font-size="medium">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <meta name="description" content="GenAI Tutor — Learn Artificial Intelligence from scratch. Chat with an AI tutor, explore modules, take quizzes and track your progress."/>
+  <meta name="keywords" content="AI, machine learning, deep learning, learn AI, AI tutor, generative AI"/>
+  <meta name="theme-color" content="#0a0f1e"/>
+  <meta property="og:title" content="GenAI Tutor — Learn AI From Scratch"/>
+  <meta property="og:description" content="Your personal AI tutor. Learn AI, ML, LLMs and more for free."/>
+  <title>GenAI Tutor — Learn AI From Scratch</title>
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com"/>
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin/>
+  <link href="https://fonts.googleapis.com/css2?family=Syne:wght@400;600;700;800&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap" rel="stylesheet"/>
+
+  <!-- CSS — Load order matters -->
+  <link rel="stylesheet" href="assets/css/styles.css"/>
+  <link rel="stylesheet" href="assets/css/layout.css"/>
+  <link rel="stylesheet" href="assets/css/components.css"/>
+  <link rel="stylesheet" href="assets/css/animations.css"/>
+  <link rel="stylesheet" href="assets/css/responsive.css"/>
+</head>
+<body>
+
+  <!-- Star field canvas background -->
+  <canvas id="starCanvas" aria-hidden="true" style="position:fixed;inset:0;z-index:0;pointer-events:none;"></canvas>
+
+  <!-- App shell -->
+  <div id="appShell" style="position:relative;z-index:1;min-height:100vh;display:flex;flex-direction:column;">
+
+    <!-- Navigation -->
+    <div id="navContainer"></div>
+
+    <!-- Skip to content (accessibility) -->
+    <a href="#main-content" class="skip-link">Skip to main content</a>
+
+    <!-- Main content area -->
+    <main id="appContent" class="app-content" tabindex="-1" aria-live="polite">
+      <!-- Pages render here -->
+      <div class="loading-screen" id="loadingScreen" role="status" aria-label="Loading application">
+        <div class="loading-logo">🧠</div>
+        <div class="loading-text">GenAI<span style="color:var(--accent-cyan)">Tutor</span></div>
+        <div class="loading-bar"><div class="loading-bar-fill"></div></div>
+        <p>Preparing your learning space...</p>
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="app-footer" role="contentinfo">
+      <p>🧠 GenAI Tutor &mdash; Learn AI for free. Built with ❤️ using Vanilla JS.</p>
+      <nav aria-label="Footer navigation">
+        <a href="#/">Home</a> · 
+        <a href="#/modules">Modules</a> · 
+        <a href="#/tutor">AI Tutor</a> · 
+        <a href="#/settings">Settings</a>
+      </nav>
+    </footer>
+  </div>
+
+  <!-- Toast container (appended by JS) -->
+
+  <!-- ========================================================
+       JavaScript — Load order is critical
+       Utils → Config → State/Storage → Services → Components → Pages → Router → App
+       ======================================================== -->
+
+  <!-- Utils -->
+  <script src="assets/js/utils/constants.js"></script>
+  <script src="assets/js/utils/helpers.js"></script>
+  <script src="assets/js/utils/validators.js"></script>
+
+  <!-- Config -->
+  <script src="assets/js/config.js"></script>
+
+  <!-- State & Storage -->
+  <script src="assets/js/state.js"></script>
+
+  <!-- Services -->
+  <script src="assets/js/services/moduleService.js"></script>
+  <script src="assets/js/services/aiService.js"></script>
+
+  <!-- Components -->
+  <script src="assets/js/components/cards.js"></script>
+  <script src="assets/js/components/modal.js"></script>
+  <script src="assets/js/components/chat.js"></script>
+  <script src="assets/js/components/quiz.js"></script>
+  <script src="assets/js/components/progress.js"></script>
+  <script src="assets/js/components/sidebar.js"></script>
+  <script src="assets/js/components/dashboard.js"></script>
+  <script src="assets/js/components/navbar.js"></script>
+
+  <!-- Pages -->
+  <script src="assets/js/pages/landingPage.js"></script>
+  <script src="assets/js/pages/dashboardPage.js"></script>
+  <script src="assets/js/pages/tutorPage.js"></script>
+  <script src="assets/js/pages/modulesPage.js"></script>
+  <script src="assets/js/pages/quizPage.js"></script>
+  <script src="assets/js/pages/progressPage.js"></script>
+  <script src="assets/js/pages/settingsPage.js"></script>
+
+  <!-- Router & App bootstrap -->
+  <script src="assets/js/router.js"></script>
+  <script src="assets/js/app.js"></script>
+
+  <script>
+    // Hide loading screen once app boots
+    document.addEventListener('DOMContentLoaded', () => {
+      setTimeout(() => {
+        const screen = document.getElementById('loadingScreen');
+        if (screen) {
+          screen.style.opacity = '0';
+          screen.style.transition = 'opacity 0.5s';
+          setTimeout(() => screen.remove(), 500);
+        }
+      }, 600);
+    });
+  </script>
+</body>
+</html>

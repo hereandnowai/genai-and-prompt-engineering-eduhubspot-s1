@@ -1,0 +1,39 @@
+[
+  {
+    "id": "quiz-ai-basics",
+    "moduleId": "intro-to-ai",
+    "title": "AI Basics Challenge",
+    "difficulty": "Beginner",
+    "questions": [
+      {
+        "id": "q1",
+        "question": "What is the primary power source for modern AI?",
+        "options": ["Electricity", "Data", "Human willpower", "Magic"],
+        "answer": 1,
+        "explanation": "AI models learn patterns from massive amounts of data."
+      },
+      {
+        "id": "q2",
+        "question": "Which of these best describes an AI algorithm?",
+        "options": ["A physical computer chip", "A set of rules or instructions", "A specific type of keyboard", "A digital video file"],
+        "answer": 1,
+        "explanation": "Algorithms are the mathematical recipes AI follows."
+      }
+    ]
+  },
+  {
+    "id": "quiz-ml-concepts",
+    "moduleId": "machine-learning",
+    "title": "ML Essentials",
+    "difficulty": "Intermediate",
+    "questions": [
+      {
+        "id": "q1",
+        "question": "What happens during the 'Training' phase of Machine Learning?",
+        "options": ["The computer goes to the gym", "The model learns patterns from data", "The programmer writes more 'If' statements", "The database is deleted"],
+        "answer": 1,
+        "explanation": "Training is when the model adjusts itself to match the examples provided."
+      }
+    ]
+  }
+]
