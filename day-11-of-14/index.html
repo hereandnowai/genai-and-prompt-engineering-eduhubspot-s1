@@ -1,0 +1,2132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="HERE AND NOW AI server monitoring dashboard for live uptime, CPU, memory, disk, network, alerts, logs, and process observability.">
+  <title>HERE AND NOW AI Server Monitoring Dashboard</title>
+  <link rel="icon" href="https://raw.githubusercontent.com/hereandnowai/images/refs/heads/main/logos/favicon-logo-with-name.png">
+  <style>
+    /* === Reset === */
+    *,
+    *::before,
+    *::after {
+      box-sizing: border-box;
+    }
+
+    body,
+    h1,
+    h2,
+    h3,
+    p,
+    ul,
+    ol,
+    figure {
+      margin: 0;
+    }
+
+    ul,
+    ol {
+      padding: 0;
+      list-style: none;
+    }
+
+    button,
+    input,
+    select,
+    textarea {
+      font: inherit;
+    }
+
+    button {
+      border: 0;
+      cursor: pointer;
+    }
+
+    img,
+    canvas {
+      display: block;
+      max-width: 100%;
+    }
+
+    /* === Variables === */
+    :root {
+      --brand-primary: #ffdf00;
+      --brand-secondary: #004040;
+      --color-page: #f6f6ee;
+      --color-surface: #ffffff;
+      --color-surface-strong: #fff9cb;
+      --color-text: #063a3a;
+      --color-muted: #59716d;
+      --color-border: #d8e1d9;
+      --color-accent: var(--brand-primary);
+      --color-accent-strong: var(--brand-secondary);
+      --color-accent-soft: #fff6ad;
+      --color-info: #2f6fb3;
+      --color-info-soft: #e1eefb;
+      --color-warning: #b96d10;
+      --color-warning-soft: #fff0d8;
+      --color-danger: #ba3d3d;
+      --color-danger-soft: #fde2e2;
+      --color-ok: #167a58;
+      --color-ok-soft: #e1f5ed;
+      --shadow-soft: 0 12px 32px rgba(0, 64, 64, 0.1);
+      --shadow-line: 0 1px 0 rgba(0, 64, 64, 0.1);
+      --radius-sm: 6px;
+      --radius-md: 8px;
+      --spacing-2xs: 0.25rem;
+      --spacing-xs: 0.5rem;
+      --spacing-sm: 0.75rem;
+      --spacing-md: 1rem;
+      --spacing-lg: 1.5rem;
+      --spacing-xl: 2rem;
+      --font-stack: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+    }
+
+    :root.theme-dark {
+      --color-page: #001f1f;
+      --color-surface: #073333;
+      --color-surface-strong: #143d34;
+      --color-text: #f6f8ee;
+      --color-muted: #b8c8c3;
+      --color-border: #285f5a;
+    }
+
+    /* === Base === */
+    body {
+      min-height: 100vh;
+      background: var(--color-page);
+      color: var(--color-text);
+      font-family: var(--font-stack);
+      line-height: 1.5;
+    }
+
+    .page {
+      display: grid;
+      min-height: 100vh;
+      grid-template-columns: 1fr;
+    }
+
+    .visually-hidden {
+      position: absolute;
+      width: 1px;
+      height: 1px;
+      padding: 0;
+      margin: -1px;
+      overflow: hidden;
+      clip: rect(0, 0, 0, 0);
+      white-space: nowrap;
+      border: 0;
+    }
+
+    /* === Sidebar === */
+    .sidebar {
+      position: sticky;
+      top: 0;
+      z-index: 20;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
+      align-items: center;
+      gap: var(--spacing-md);
+      padding: var(--spacing-md);
+      background: rgba(0, 64, 64, 0.96);
+      border-bottom: 1px solid rgba(255, 223, 0, 0.28);
+      backdrop-filter: blur(14px);
+    }
+
+    .brand {
+      display: flex;
+      grid-column: 1;
+      grid-row: 1;
+      align-items: center;
+      gap: var(--spacing-sm);
+      min-width: 0;
+    }
+
+    .brand__logo {
+      width: 2.8rem;
+      height: 2.8rem;
+      object-fit: contain;
+      flex: 0 0 auto;
+      border-radius: var(--radius-md);
+      background: #fff;
+      padding: 0.2rem;
+      box-shadow: var(--shadow-line);
+    }
+
+    .brand__name {
+      display: block;
+      overflow: hidden;
+      font-size: 0.95rem;
+      font-weight: 800;
+      color: #fff;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .brand__meta {
+      display: block;
+      color: var(--brand-primary);
+      font-size: 0.78rem;
+    }
+
+    .nav {
+      display: grid;
+      grid-column: 1 / -1;
+      grid-row: 2;
+      grid-template-columns: repeat(4, 1fr);
+      gap: var(--spacing-xs);
+      padding: var(--spacing-xs);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: rgba(255, 255, 255, 0.98);
+      box-shadow: var(--shadow-soft);
+      backdrop-filter: blur(14px);
+    }
+
+    .nav__button {
+      display: grid;
+      min-height: 2.65rem;
+      place-items: center;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      color: var(--color-muted);
+      font-size: 0.8rem;
+      font-weight: 700;
+      transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+    }
+
+    .nav__button:hover,
+    .nav__button:focus-visible {
+      background: var(--color-accent-soft);
+      color: var(--color-accent-strong);
+      outline: none;
+    }
+
+    .nav__button[aria-current="page"] {
+      background: var(--color-accent);
+      color: var(--brand-secondary);
+    }
+
+    .sidebar__actions {
+      display: flex;
+      grid-column: 2;
+      grid-row: 1;
+      align-items: center;
+      gap: var(--spacing-xs);
+    }
+
+    /* === Layout === */
+    .main {
+      display: grid;
+      gap: var(--spacing-lg);
+      width: min(100%, 1500px);
+      margin: 0 auto;
+      padding: var(--spacing-lg) var(--spacing-md);
+    }
+
+    .topbar {
+      display: grid;
+      gap: var(--spacing-md);
+      align-items: start;
+    }
+
+    .topbar__eyebrow {
+      color: var(--color-muted);
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .topbar__brand {
+      display: inline-flex;
+      width: fit-content;
+      align-items: center;
+      gap: var(--spacing-xs);
+      margin-bottom: var(--spacing-xs);
+      border-radius: 999px;
+      background: var(--brand-secondary);
+      color: var(--brand-primary);
+      padding: 0.32rem 0.72rem;
+      font-size: 0.78rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .topbar__title {
+      margin-top: var(--spacing-2xs);
+      font-size: clamp(1.65rem, 4vw, 2.6rem);
+      line-height: 1.1;
+    }
+
+    .topbar__summary {
+      max-width: 62rem;
+      margin-top: var(--spacing-xs);
+      color: var(--color-muted);
+      font-size: 0.98rem;
+    }
+
+    .topbar__controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-xs);
+    }
+
+    .view {
+      display: none;
+      gap: var(--spacing-lg);
+    }
+
+    .view--active {
+      display: grid;
+    }
+
+    .grid {
+      display: grid;
+      gap: var(--spacing-md);
+    }
+
+    .grid--metrics {
+      grid-template-columns: repeat(auto-fit, minmax(12.5rem, 1fr));
+    }
+
+    .grid--split {
+      grid-template-columns: 1fr;
+    }
+
+    .grid--three {
+      grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+    }
+
+    .panel {
+      min-width: 0;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: var(--color-surface);
+      box-shadow: var(--shadow-soft);
+    }
+
+    .panel__header {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--spacing-md);
+      padding: var(--spacing-md);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .panel__title {
+      font-size: 1rem;
+      line-height: 1.2;
+    }
+
+    .panel__meta {
+      margin-top: var(--spacing-2xs);
+      color: var(--color-muted);
+      font-size: 0.82rem;
+    }
+
+    .panel__body {
+      padding: var(--spacing-md);
+    }
+
+    .panel__footer {
+      padding: var(--spacing-md);
+      border-top: 1px solid var(--color-border);
+      color: var(--color-muted);
+      font-size: 0.84rem;
+    }
+
+    /* === Buttons And Inputs === */
+    .button {
+      display: inline-flex;
+      min-height: 2.45rem;
+      align-items: center;
+      justify-content: center;
+      gap: var(--spacing-xs);
+      padding: 0 var(--spacing-md);
+      border: 1px solid transparent;
+      border-radius: var(--radius-sm);
+      background: var(--color-accent);
+      color: var(--brand-secondary);
+      font-size: 0.88rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: background 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease, box-shadow 180ms ease;
+    }
+
+    .button:hover,
+    .button:focus-visible {
+      background: var(--color-accent-strong);
+      color: var(--brand-primary);
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    .button--secondary {
+      border-color: var(--color-border);
+      background: var(--color-surface);
+      color: var(--color-text);
+    }
+
+    .button--secondary:hover,
+    .button--secondary:focus-visible {
+      border-color: var(--color-accent);
+      background: var(--color-accent-soft);
+      color: var(--color-accent-strong);
+    }
+
+    .button--danger {
+      background: var(--color-danger);
+    }
+
+    .button--danger:hover,
+    .button--danger:focus-visible {
+      background: #9f3030;
+    }
+
+    .button--ghost {
+      min-height: 2.25rem;
+      padding: 0 var(--spacing-sm);
+      border-color: transparent;
+      background: transparent;
+      color: var(--color-muted);
+    }
+
+    .button--ghost:hover,
+    .button--ghost:focus-visible {
+      background: var(--color-info-soft);
+      color: var(--color-info);
+    }
+
+    .icon-button {
+      display: inline-grid;
+      width: 2.45rem;
+      height: 2.45rem;
+      place-items: center;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      background: var(--color-surface);
+      color: var(--color-text);
+      font-weight: 900;
+      transition: background 180ms ease, border-color 180ms ease, color 180ms ease, transform 180ms ease;
+    }
+
+    .icon-button:hover,
+    .icon-button:focus-visible {
+      border-color: var(--color-accent);
+      background: var(--color-accent-soft);
+      color: var(--color-accent-strong);
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    .field {
+      display: grid;
+      gap: var(--spacing-xs);
+    }
+
+    .field__label {
+      color: var(--color-muted);
+      font-size: 0.8rem;
+      font-weight: 800;
+    }
+
+    .field__input,
+    .field__select,
+    .field__textarea {
+      width: 100%;
+      min-height: 2.6rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-sm);
+      background: var(--color-surface);
+      color: var(--color-text);
+      padding: 0.65rem 0.75rem;
+      transition: border-color 180ms ease, box-shadow 180ms ease;
+    }
+
+    .field__textarea {
+      min-height: 6.5rem;
+      resize: vertical;
+    }
+
+    .field__input:focus,
+    .field__select:focus,
+    .field__textarea:focus {
+      border-color: var(--color-accent);
+      box-shadow: 0 0 0 3px rgba(255, 223, 0, 0.3);
+      outline: none;
+    }
+
+    .segmented {
+      display: inline-grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: var(--spacing-2xs);
+      width: 100%;
+      padding: var(--spacing-2xs);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: #f7faf8;
+    }
+
+    .segmented__button {
+      min-height: 2.15rem;
+      border-radius: var(--radius-sm);
+      background: transparent;
+      color: var(--color-muted);
+      font-size: 0.82rem;
+      font-weight: 800;
+      transition: background 180ms ease, color 180ms ease;
+    }
+
+    .segmented__button:hover,
+    .segmented__button:focus-visible {
+      background: var(--color-accent-soft);
+      color: var(--color-accent-strong);
+      outline: none;
+    }
+
+    .segmented__button[aria-pressed="true"] {
+      background: var(--color-accent);
+      color: var(--brand-secondary);
+    }
+
+    .switch {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-sm);
+      color: var(--color-text);
+      font-size: 0.9rem;
+      font-weight: 700;
+      cursor: pointer;
+    }
+
+    .switch__input {
+      position: absolute;
+      opacity: 0;
+      pointer-events: none;
+    }
+
+    .switch__track {
+      position: relative;
+      width: 2.6rem;
+      height: 1.45rem;
+      flex: 0 0 auto;
+      border-radius: 999px;
+      background: #c9d2cd;
+      transition: background 180ms ease;
+    }
+
+    .switch__track::after {
+      position: absolute;
+      top: 0.18rem;
+      left: 0.18rem;
+      width: 1.08rem;
+      height: 1.08rem;
+      border-radius: 50%;
+      background: #fff;
+      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.18);
+      content: "";
+      transition: transform 180ms ease;
+    }
+
+    .switch__input:checked + .switch__track {
+      background: var(--color-accent);
+      color: var(--brand-secondary);
+    }
+
+    .switch__input:checked + .switch__track::after {
+      transform: translateX(1.15rem);
+    }
+
+    .switch__input:focus-visible + .switch__track {
+      box-shadow: 0 0 0 3px rgba(255, 223, 0, 0.3);
+    }
+
+    /* === Metrics === */
+    .metric {
+      display: grid;
+      gap: var(--spacing-md);
+      padding: var(--spacing-md);
+    }
+
+    .metric__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--spacing-sm);
+    }
+
+    .metric__label {
+      color: var(--color-muted);
+      font-size: 0.82rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .metric__status {
+      border-radius: 999px;
+      padding: 0.18rem 0.55rem;
+      background: var(--color-ok-soft);
+      color: var(--color-ok);
+      font-size: 0.73rem;
+      font-weight: 900;
+    }
+
+    .metric__status--warn {
+      background: var(--color-warning-soft);
+      color: var(--color-warning);
+    }
+
+    .metric__status--danger {
+      background: var(--color-danger-soft);
+      color: var(--color-danger);
+    }
+
+    .metric__value {
+      display: flex;
+      align-items: baseline;
+      gap: var(--spacing-xs);
+      font-size: 2rem;
+      font-weight: 850;
+      line-height: 1;
+    }
+
+    .metric__unit {
+      color: var(--color-muted);
+      font-size: 0.9rem;
+      font-weight: 700;
+    }
+
+    .metric__meter {
+      width: 100%;
+      height: 0.58rem;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #edf2ef;
+      appearance: none;
+      border: 0;
+    }
+
+    .metric__meter::-webkit-progress-bar {
+      border-radius: inherit;
+      background: #edf2ef;
+    }
+
+    .metric__meter::-webkit-progress-value {
+      height: 100%;
+      border-radius: inherit;
+      background: var(--color-accent);
+      transition: width 450ms ease, background 180ms ease;
+    }
+
+    .metric__meter::-moz-progress-bar {
+      border-radius: inherit;
+      background: var(--color-accent);
+    }
+
+    .metric__detail {
+      color: var(--color-muted);
+      font-size: 0.84rem;
+    }
+
+    .metric--warning .metric__meter::-webkit-progress-value {
+      background: var(--color-warning);
+    }
+
+    .metric--warning .metric__meter::-moz-progress-bar {
+      background: var(--color-warning);
+    }
+
+    .metric--danger .metric__meter::-webkit-progress-value {
+      background: var(--color-danger);
+    }
+
+    .metric--danger .metric__meter::-moz-progress-bar {
+      background: var(--color-danger);
+    }
+
+    /* === Status Strip === */
+    .status-strip {
+      display: grid;
+      gap: var(--spacing-sm);
+      grid-template-columns: repeat(auto-fit, minmax(11rem, 1fr));
+    }
+
+    .status-tile {
+      display: grid;
+      gap: var(--spacing-2xs);
+      padding: var(--spacing-md);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: var(--color-surface-strong);
+    }
+
+    .status-tile__label {
+      color: var(--color-muted);
+      font-size: 0.78rem;
+      font-weight: 800;
+      text-transform: uppercase;
+    }
+
+    .status-tile__value {
+      font-size: 1.05rem;
+      font-weight: 850;
+    }
+
+    /* === Chart === */
+    .chart-wrap {
+      position: relative;
+      display: grid;
+      gap: var(--spacing-md);
+    }
+
+    .chart {
+      width: 100%;
+      height: 17rem;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: linear-gradient(180deg, #ffffff, #f8fbf9);
+    }
+
+    .chart-legend {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-sm);
+      color: var(--color-muted);
+      font-size: 0.82rem;
+      font-weight: 700;
+    }
+
+    .chart-legend__item {
+      display: inline-flex;
+      align-items: center;
+      gap: var(--spacing-xs);
+    }
+
+    .chart-legend__swatch {
+      width: 0.72rem;
+      height: 0.72rem;
+      border-radius: 2px;
+      background: var(--brand-secondary);
+    }
+
+    .chart-legend__swatch--memory {
+      background: var(--color-info);
+    }
+
+    .chart-legend__swatch--network {
+      background: var(--brand-primary);
+    }
+
+    /* === Lists And Tables === */
+    .health-list {
+      display: grid;
+      gap: var(--spacing-sm);
+    }
+
+    .health-item {
+      display: grid;
+      gap: var(--spacing-xs);
+      padding: var(--spacing-sm);
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: #fbfdfc;
+    }
+
+    .health-item__top {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--spacing-sm);
+    }
+
+    .health-item__name {
+      font-weight: 850;
+    }
+
+    .health-item__meta {
+      color: var(--color-muted);
+      font-size: 0.82rem;
+    }
+
+    .badge {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      min-width: 4rem;
+      border-radius: 999px;
+      padding: 0.18rem 0.55rem;
+      background: var(--color-ok-soft);
+      color: var(--color-ok);
+      font-size: 0.72rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .badge--warning {
+      background: var(--color-warning-soft);
+      color: var(--color-warning);
+    }
+
+    .badge--danger {
+      background: var(--color-danger-soft);
+      color: var(--color-danger);
+    }
+
+    .badge--info {
+      background: var(--color-info-soft);
+      color: var(--color-info);
+    }
+
+    .table-wrap {
+      overflow-x: auto;
+    }
+
+    .table {
+      width: 100%;
+      min-width: 42rem;
+      border-collapse: collapse;
+    }
+
+    .table th,
+    .table td {
+      padding: 0.9rem 0.75rem;
+      border-bottom: 1px solid var(--color-border);
+      text-align: left;
+      vertical-align: middle;
+      white-space: nowrap;
+    }
+
+    .table th {
+      color: var(--color-muted);
+      font-size: 0.75rem;
+      font-weight: 900;
+      text-transform: uppercase;
+    }
+
+    .table tr:last-child td {
+      border-bottom: 0;
+    }
+
+    .table__mono {
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.86rem;
+    }
+
+    .process-row--selected {
+      background: var(--color-accent-soft);
+    }
+
+    .progress-inline {
+      display: inline-grid;
+      grid-template-columns: 4rem 1fr;
+      gap: var(--spacing-xs);
+      align-items: center;
+      min-width: 10rem;
+    }
+
+    .progress-inline__meter {
+      width: 100%;
+      height: 0.44rem;
+      overflow: hidden;
+      border-radius: 999px;
+      background: #e9efeb;
+      appearance: none;
+      border: 0;
+    }
+
+    .progress-inline__meter::-webkit-progress-bar {
+      border-radius: inherit;
+      background: #e9efeb;
+    }
+
+    .progress-inline__meter::-webkit-progress-value {
+      height: 100%;
+      border-radius: inherit;
+      background: var(--color-info);
+    }
+
+    .progress-inline__meter::-moz-progress-bar {
+      border-radius: inherit;
+      background: var(--color-info);
+    }
+
+    .log-list {
+      display: grid;
+      max-height: 30rem;
+      overflow: auto;
+      border: 1px solid var(--color-border);
+      border-radius: var(--radius-md);
+      background: #101916;
+    }
+
+    .log-entry {
+      display: grid;
+      grid-template-columns: auto auto 1fr;
+      gap: var(--spacing-sm);
+      align-items: start;
+      padding: 0.78rem var(--spacing-md);
+      border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+      color: #e7f2ee;
+      font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+      font-size: 0.82rem;
+    }
+
+    .log-entry:last-child {
+      border-bottom: 0;
+    }
+
+    .log-entry__time {
+      color: #94aaa2;
+    }
+
+    .log-entry__level {
+      min-width: 4.2rem;
+      font-weight: 900;
+    }
+
+    .log-entry__level--info {
+      color: #86bffa;
+    }
+
+    .log-entry__level--warn {
+      color: #ffd27c;
+    }
+
+    .log-entry__level--error {
+      color: #ff9a9a;
+    }
+
+    .alert-list {
+      display: grid;
+      gap: var(--spacing-sm);
+    }
+
+    .alert-item {
+      display: grid;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-md);
+      border: 1px solid var(--color-border);
+      border-left: 5px solid var(--color-info);
+      border-radius: var(--radius-md);
+      background: #fff;
+      transition: opacity 180ms ease, transform 180ms ease;
+    }
+
+    .alert-item--warning {
+      border-left-color: var(--color-warning);
+    }
+
+    .alert-item--danger {
+      border-left-color: var(--color-danger);
+    }
+
+    .alert-item--resolved {
+      opacity: 0.55;
+    }
+
+    .alert-item__top {
+      display: flex;
+      align-items: flex-start;
+      justify-content: space-between;
+      gap: var(--spacing-md);
+    }
+
+    .alert-item__title {
+      font-size: 0.98rem;
+      font-weight: 850;
+    }
+
+    .alert-item__meta {
+      color: var(--color-muted);
+      font-size: 0.82rem;
+    }
+
+    .alert-item__actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-xs);
+    }
+
+    /* === Forms === */
+    .form-grid {
+      display: grid;
+      gap: var(--spacing-md);
+    }
+
+    .form-grid--two {
+      grid-template-columns: 1fr;
+    }
+
+    .form-actions {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: var(--spacing-sm);
+    }
+
+    .form-message {
+      min-height: 1.3rem;
+      color: var(--color-accent-strong);
+      font-size: 0.86rem;
+      font-weight: 800;
+    }
+
+    /* === Contact === */
+    .contact {
+      display: grid;
+      gap: var(--spacing-md);
+      padding: var(--spacing-lg);
+      border-radius: var(--radius-md);
+      background: var(--brand-secondary);
+      color: #fff;
+    }
+
+    .contact__title {
+      color: var(--brand-primary);
+      font-size: 1.08rem;
+      line-height: 1.2;
+    }
+
+    .contact__text {
+      max-width: 58rem;
+      color: #dbe9e6;
+      font-size: 0.94rem;
+    }
+
+    .contact__links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: var(--spacing-xs);
+    }
+
+    .contact__link {
+      display: inline-flex;
+      min-height: 2.25rem;
+      align-items: center;
+      border: 1px solid rgba(255, 223, 0, 0.45);
+      border-radius: var(--radius-sm);
+      color: #fff;
+      padding: 0 var(--spacing-sm);
+      font-size: 0.84rem;
+      font-weight: 800;
+      text-decoration: none;
+      transition: background 180ms ease, color 180ms ease, transform 180ms ease;
+    }
+
+    .contact__link:hover,
+    .contact__link:focus-visible {
+      background: var(--brand-primary);
+      color: var(--brand-secondary);
+      outline: none;
+      transform: translateY(-1px);
+    }
+
+    /* === Toast And Modal === */
+    .toast-stack {
+      position: fixed;
+      top: 4.8rem;
+      right: var(--spacing-md);
+      z-index: 50;
+      display: grid;
+      gap: var(--spacing-xs);
+      width: min(22rem, calc(100vw - 2rem));
+    }
+
+    .toast {
+      padding: var(--spacing-md);
+      border: 1px solid var(--color-border);
+      border-left: 5px solid var(--color-accent);
+      border-radius: var(--radius-md);
+      background: #fff;
+      box-shadow: var(--shadow-soft);
+      animation: toastIn 220ms ease both;
+    }
+
+    .toast--warning {
+      border-left-color: var(--color-warning);
+    }
+
+    .toast--danger {
+      border-left-color: var(--color-danger);
+    }
+
+    .toast__title {
+      font-weight: 850;
+    }
+
+    .toast__message {
+      margin-top: var(--spacing-2xs);
+      color: var(--color-muted);
+      font-size: 0.86rem;
+    }
+
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 60;
+      display: none;
+      place-items: center;
+      padding: var(--spacing-md);
+      background: rgba(21, 28, 25, 0.46);
+    }
+
+    .modal--open {
+      display: grid;
+    }
+
+    .modal__dialog {
+      width: min(100%, 36rem);
+      border-radius: var(--radius-md);
+      background: #fff;
+      box-shadow: 0 24px 80px rgba(0, 0, 0, 0.26);
+      animation: modalIn 180ms ease both;
+    }
+
+    .modal__header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: var(--spacing-md);
+      padding: var(--spacing-md);
+      border-bottom: 1px solid var(--color-border);
+    }
+
+    .modal__body {
+      display: grid;
+      gap: var(--spacing-md);
+      padding: var(--spacing-md);
+    }
+
+    .modal__footer {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: flex-end;
+      gap: var(--spacing-sm);
+      padding: var(--spacing-md);
+      border-top: 1px solid var(--color-border);
+    }
+
+    /* === Animations === */
+    @keyframes toastIn {
+      from {
+        opacity: 0;
+        transform: translateY(-8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes modalIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px) scale(0.98);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+      }
+    }
+
+    /* === Responsive === */
+    @media (min-width: 720px) {
+      .topbar {
+        grid-template-columns: 1fr auto;
+        align-items: end;
+      }
+
+      .grid--split {
+        grid-template-columns: minmax(0, 1.55fr) minmax(18rem, 0.85fr);
+      }
+
+      .form-grid--two {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .segmented {
+        width: auto;
+        min-width: 17rem;
+      }
+    }
+
+    @media (min-width: 1040px) {
+      .page {
+        grid-template-columns: 15.5rem 1fr;
+      }
+
+      .sidebar {
+        position: sticky;
+        top: 0;
+        align-self: start;
+        display: grid;
+        grid-template-columns: 1fr;
+        min-height: 100vh;
+        grid-template-rows: auto 1fr auto;
+        align-items: stretch;
+        padding: var(--spacing-lg);
+        border-right: 1px solid var(--color-border);
+        border-bottom: 0;
+        background: var(--brand-secondary);
+      }
+
+      .brand {
+        grid-column: 1;
+        grid-row: 1;
+      }
+
+      .nav {
+        grid-column: 1;
+        grid-row: 2;
+        display: grid;
+        grid-template-columns: 1fr;
+        align-content: start;
+        align-self: start;
+        gap: var(--spacing-xs);
+        width: 100%;
+        padding: 0;
+        border: 0;
+        border-radius: 0;
+        background: transparent;
+        box-shadow: none;
+      }
+
+      .nav__button {
+        justify-content: start;
+        min-height: 2.7rem;
+        padding: 0 var(--spacing-md);
+        place-items: center start;
+      }
+
+      .sidebar__actions {
+        grid-column: 1;
+        grid-row: 3;
+        justify-content: space-between;
+      }
+
+      .main {
+        padding: var(--spacing-xl);
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <aside class="sidebar" aria-label="Dashboard navigation">
+      <a class="brand" href="#overview" aria-label="HERE AND NOW AI server overview">
+        <img class="brand__logo" src="https://raw.githubusercontent.com/hereandnowai/images/refs/heads/main/logos/favicon-logo-with-name.png" alt="HERE AND NOW AI logo">
+        <span>
+          <span class="brand__name">HERE AND NOW AI</span>
+          <span class="brand__meta">AI is Good</span>
+        </span>
+      </a>
+
+      <nav class="nav" aria-label="Primary">
+        <button class="nav__button" type="button" data-view-target="overview" aria-current="page">Overview</button>
+        <button class="nav__button" type="button" data-view-target="processes">Processes</button>
+        <button class="nav__button" type="button" data-view-target="alerts">Alerts</button>
+        <button class="nav__button" type="button" data-view-target="logs">Logs</button>
+      </nav>
+
+      <div class="sidebar__actions">
+        <button class="icon-button" type="button" id="themeToggle" aria-label="Toggle theme" title="Toggle theme">T</button>
+        <button class="icon-button" type="button" id="settingsOpen" aria-label="Open settings" title="Open settings">S</button>
+      </div>
+    </aside>
+
+    <main class="main">
+      <section class="topbar" aria-labelledby="dashboardTitle">
+        <div>
+          <p class="topbar__brand">HERE AND NOW AI | AI is Good</p>
+          <p class="topbar__eyebrow" id="currentWindow">Live window: 15 minutes</p>
+          <h1 class="topbar__title" id="dashboardTitle">Server Monitoring Dashboard</h1>
+          <p class="topbar__summary" id="lastUpdated">prod-api-01 is serving customer traffic from us-east-1a. Latest sample received just now.</p>
+        </div>
+        <div class="topbar__controls" aria-label="Dashboard controls">
+          <button class="button button--secondary" type="button" id="pauseLive">Pause</button>
+          <button class="button" type="button" id="runCheck">Run Health Check</button>
+          <button class="button button--secondary" type="button" id="exportReport">Export</button>
+        </div>
+      </section>
+
+      <section class="view view--active" id="view-overview" data-view="overview" aria-label="Overview">
+        <div class="status-strip" aria-label="Server status summary">
+          <article class="status-tile">
+            <span class="status-tile__label">Availability</span>
+            <strong class="status-tile__value" id="availabilityValue">99.982%</strong>
+          </article>
+          <article class="status-tile">
+            <span class="status-tile__label">Requests</span>
+            <strong class="status-tile__value" id="requestValue">1,842/min</strong>
+          </article>
+          <article class="status-tile">
+            <span class="status-tile__label">Median latency</span>
+            <strong class="status-tile__value" id="latencyValue">42 ms</strong>
+          </article>
+          <article class="status-tile">
+            <span class="status-tile__label">Active alerts</span>
+            <strong class="status-tile__value" id="activeAlertValue">3</strong>
+          </article>
+        </div>
+
+        <div class="grid grid--metrics" id="metricGrid" aria-label="Resource metrics"></div>
+
+        <div class="grid grid--split">
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <h2 class="panel__title">Resource Trend</h2>
+                <p class="panel__meta">CPU, memory, and network throughput</p>
+              </div>
+              <div class="segmented" role="group" aria-label="Chart range">
+                <button class="segmented__button" type="button" data-range="15" aria-pressed="true">15m</button>
+                <button class="segmented__button" type="button" data-range="60" aria-pressed="false">1h</button>
+                <button class="segmented__button" type="button" data-range="360" aria-pressed="false">6h</button>
+              </div>
+            </div>
+            <div class="panel__body">
+              <div class="chart-wrap">
+                <canvas class="chart" id="trendChart" width="960" height="340" aria-label="Resource trend chart"></canvas>
+                <div class="chart-legend" aria-label="Chart legend">
+                  <span class="chart-legend__item"><span class="chart-legend__swatch"></span>CPU</span>
+                  <span class="chart-legend__item"><span class="chart-legend__swatch chart-legend__swatch--memory"></span>Memory</span>
+                  <span class="chart-legend__item"><span class="chart-legend__swatch chart-legend__swatch--network"></span>Network</span>
+                </div>
+              </div>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <h2 class="panel__title">Service Health</h2>
+                <p class="panel__meta">Runtime checks by component</p>
+              </div>
+            </div>
+            <div class="panel__body">
+              <ul class="health-list" id="serviceList"></ul>
+            </div>
+          </article>
+        </div>
+
+        <div class="grid grid--three">
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <h2 class="panel__title">Storage</h2>
+                <p class="panel__meta">Mounted volumes</p>
+              </div>
+            </div>
+            <div class="panel__body">
+              <ul class="health-list" id="storageList"></ul>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <h2 class="panel__title">Network</h2>
+                <p class="panel__meta">Edge and internal paths</p>
+              </div>
+            </div>
+            <div class="panel__body">
+              <ul class="health-list" id="networkList"></ul>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <h2 class="panel__title">Maintenance</h2>
+                <p class="panel__meta">Next planned work</p>
+              </div>
+            </div>
+            <div class="panel__body">
+              <ul class="health-list" id="maintenanceList"></ul>
+            </div>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" id="view-processes" data-view="processes" aria-label="Processes">
+        <article class="panel">
+          <div class="panel__header">
+            <div>
+              <h2 class="panel__title">Process Table</h2>
+              <p class="panel__meta">Runtime processes sorted by CPU load</p>
+            </div>
+            <div class="topbar__controls">
+              <label class="field" for="processSearch">
+                <span class="visually-hidden">Search processes</span>
+                <input class="field__input" id="processSearch" type="search" placeholder="Search process">
+              </label>
+              <button class="button button--danger" type="button" id="killSelected" disabled>Stop Selected</button>
+            </div>
+          </div>
+          <div class="panel__body table-wrap">
+            <table class="table">
+              <thead>
+                <tr>
+                  <th scope="col">PID</th>
+                  <th scope="col">Name</th>
+                  <th scope="col">User</th>
+                  <th scope="col">CPU</th>
+                  <th scope="col">Memory</th>
+                  <th scope="col">Uptime</th>
+                  <th scope="col">Status</th>
+                </tr>
+              </thead>
+              <tbody id="processTable"></tbody>
+            </table>
+          </div>
+          <div class="panel__footer" id="processCount">0 processes visible</div>
+        </article>
+      </section>
+
+      <section class="view" id="view-alerts" data-view="alerts" aria-label="Alerts">
+        <div class="grid grid--split">
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <h2 class="panel__title">Incident Queue</h2>
+                <p class="panel__meta">Open and recently resolved notifications</p>
+              </div>
+              <select class="field__select" id="alertFilter" aria-label="Filter alerts">
+                <option value="all">All severities</option>
+                <option value="danger">Critical</option>
+                <option value="warning">Warning</option>
+                <option value="info">Info</option>
+              </select>
+            </div>
+            <div class="panel__body">
+              <ul class="alert-list" id="alertList"></ul>
+            </div>
+          </article>
+
+          <article class="panel">
+            <div class="panel__header">
+              <div>
+                <h2 class="panel__title">Create Watch Rule</h2>
+                <p class="panel__meta">Rules are evaluated against each new sample</p>
+              </div>
+            </div>
+            <form class="panel__body form-grid" id="watchRuleForm" novalidate>
+              <label class="field" for="ruleName">
+                <span class="field__label">Rule name</span>
+                <input class="field__input" id="ruleName" name="ruleName" type="text" value="Sustained CPU pressure" required>
+              </label>
+              <div class="form-grid form-grid--two">
+                <label class="field" for="ruleMetric">
+                  <span class="field__label">Metric</span>
+                  <select class="field__select" id="ruleMetric" name="ruleMetric">
+                    <option value="cpu">CPU</option>
+                    <option value="memory">Memory</option>
+                    <option value="disk">Disk</option>
+                    <option value="latency">Latency</option>
+                  </select>
+                </label>
+                <label class="field" for="ruleThreshold">
+                  <span class="field__label">Threshold</span>
+                  <input class="field__input" id="ruleThreshold" name="ruleThreshold" type="number" min="1" max="100" value="85" required>
+                </label>
+              </div>
+              <label class="field" for="ruleTarget">
+                <span class="field__label">Notification target</span>
+                <input class="field__input" id="ruleTarget" name="ruleTarget" type="email" value="oncall@example.com" required>
+              </label>
+              <div class="form-actions">
+                <button class="button" type="submit">Save Rule</button>
+                <button class="button button--secondary" type="button" id="resetRule">Reset</button>
+              </div>
+              <p class="form-message" id="ruleMessage" aria-live="polite"></p>
+            </form>
+          </article>
+        </div>
+      </section>
+
+      <section class="view" id="view-logs" data-view="logs" aria-label="Logs">
+        <article class="panel">
+          <div class="panel__header">
+            <div>
+              <h2 class="panel__title">Application Logs</h2>
+              <p class="panel__meta">api-gateway, worker, postgres, redis</p>
+            </div>
+            <div class="topbar__controls">
+              <select class="field__select" id="logLevel" aria-label="Filter log level">
+                <option value="all">All levels</option>
+                <option value="info">Info</option>
+                <option value="warn">Warn</option>
+                <option value="error">Error</option>
+              </select>
+              <button class="button button--secondary" type="button" id="clearLogs">Clear</button>
+            </div>
+          </div>
+          <div class="panel__body">
+            <div class="log-list" id="logList" aria-live="polite"></div>
+          </div>
+        </article>
+      </section>
+
+      <footer class="contact" aria-label="Connect with HERE AND NOW AI">
+        <div>
+          <h2 class="contact__title">Connect with HERE AND NOW AI</h2>
+          <p class="contact__text">Build server observability, AI-powered operations, and modern monitoring workflows with a team guided by one simple belief: AI is Good.</p>
+        </div>
+        <div class="contact__links">
+          <a class="contact__link" href="https://hereandnowai.com" target="_blank" rel="noopener">Website</a>
+          <a class="contact__link" href="https://www.linkedin.com/company/hereandnowai/" target="_blank" rel="noopener">LinkedIn</a>
+          <a class="contact__link" href="https://x.com/hereandnow_ai" target="_blank" rel="noopener">X</a>
+          <a class="contact__link" href="https://instagram.com/hereandnow_ai" target="_blank" rel="noopener">Instagram</a>
+          <a class="contact__link" href="https://youtube.com/@hereandnow_ai" target="_blank" rel="noopener">YouTube</a>
+          <a class="contact__link" href="https://github.com/hereandnowai" target="_blank" rel="noopener">GitHub</a>
+          <a class="contact__link" href="mailto:info@hereandnowai.com">info@hereandnowai.com</a>
+          <a class="contact__link" href="tel:+919962961000">+91 996 296 1000</a>
+        </div>
+      </footer>
+    </main>
+  </div>
+
+  <div class="toast-stack" id="toastStack" aria-live="polite" aria-atomic="true"></div>
+
+  <div class="modal" id="settingsModal" role="dialog" aria-modal="true" aria-labelledby="settingsTitle">
+    <div class="modal__dialog">
+      <div class="modal__header">
+        <h2 class="panel__title" id="settingsTitle">Monitoring Settings</h2>
+        <button class="icon-button" type="button" id="settingsClose" aria-label="Close settings">X</button>
+      </div>
+      <form id="settingsForm">
+        <div class="modal__body">
+          <label class="field" for="sampleRate">
+            <span class="field__label">Sample rate</span>
+            <select class="field__select" id="sampleRate" name="sampleRate">
+              <option value="1500">1.5 seconds</option>
+              <option value="3000" selected>3 seconds</option>
+              <option value="5000">5 seconds</option>
+            </select>
+          </label>
+          <label class="switch">
+            <input class="switch__input" type="checkbox" id="notifyWarnings" checked>
+            <span class="switch__track" aria-hidden="true"></span>
+            Warning notifications
+          </label>
+          <label class="switch">
+            <input class="switch__input" type="checkbox" id="showResolved" checked>
+            <span class="switch__track" aria-hidden="true"></span>
+            Resolved alerts
+          </label>
+          <label class="field" for="notesField">
+            <span class="field__label">On-call note</span>
+            <textarea class="field__textarea" id="notesField" name="notesField">Watch disk pressure on /var/log during nightly import.</textarea>
+          </label>
+        </div>
+        <div class="modal__footer">
+          <button class="button button--secondary" type="button" id="settingsCancel">Cancel</button>
+          <button class="button" type="submit">Apply Settings</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script>
+    const serverState = {
+      live: true,
+      dark: false,
+      selectedProcessPid: null,
+      range: 15,
+      sampleRate: 3000,
+      notifyWarnings: true,
+      showResolved: true,
+      tick: 0,
+      metrics: [
+        { key: 'cpu', label: 'CPU Load', value: 68, unit: '%', detail: '8 cores, 2.9 GHz average', warn: 75, danger: 90 },
+        { key: 'memory', label: 'Memory', value: 61, unit: '%', detail: '19.6 GB of 32 GB used', warn: 78, danger: 92 },
+        { key: 'disk', label: 'Disk', value: 72, unit: '%', detail: '432 GB free on /data', warn: 80, danger: 92 },
+        { key: 'network', label: 'Network I/O', value: 44, unit: 'MB/s', detail: '31 MB/s in, 13 MB/s out', warn: 72, danger: 88 }
+      ],
+      services: [
+        { name: 'api-gateway', meta: 'Port 443, p95 118 ms', status: 'healthy' },
+        { name: 'worker-queue', meta: '14 jobs waiting, 6 workers active', status: 'healthy' },
+        { name: 'postgres-primary', meta: 'Replication lag 1.2 s', status: 'warning' },
+        { name: 'redis-cache', meta: 'Hit rate 94.7%', status: 'healthy' },
+        { name: 'backup-agent', meta: 'Last snapshot 02:15 UTC', status: 'healthy' }
+      ],
+      storage: [
+        { name: '/', meta: '126 GB used of 180 GB', status: 'healthy' },
+        { name: '/data', meta: '1.1 TB used of 1.5 TB', status: 'warning' },
+        { name: '/var/log', meta: '71 GB used of 80 GB', status: 'warning' }
+      ],
+      network: [
+        { name: 'Load balancer', meta: '31,228 open connections', status: 'healthy' },
+        { name: 'Private subnet', meta: '0.03% packet loss', status: 'healthy' },
+        { name: 'DNS resolver', meta: '19 ms average lookup', status: 'healthy' }
+      ],
+      maintenance: [
+        { name: 'Kernel patch', meta: 'Scheduled May 18, 03:00 UTC', status: 'info' },
+        { name: 'Certificate rotation', meta: 'Expires in 42 days', status: 'healthy' },
+        { name: 'Backup restore test', meta: 'Last verified May 12', status: 'healthy' }
+      ],
+      processes: [
+        { pid: 1821, name: 'nginx: master', user: 'root', cpu: 4, memory: 2, uptime: '42d 08h', status: 'running' },
+        { pid: 2419, name: 'node api-gateway', user: 'deploy', cpu: 31, memory: 18, uptime: '12d 14h', status: 'running' },
+        { pid: 2488, name: 'node billing-worker', user: 'deploy', cpu: 18, memory: 11, uptime: '12d 14h', status: 'running' },
+        { pid: 2542, name: 'postgres writer', user: 'postgres', cpu: 12, memory: 22, uptime: '42d 08h', status: 'running' },
+        { pid: 2610, name: 'redis-server', user: 'redis', cpu: 6, memory: 7, uptime: '42d 08h', status: 'running' },
+        { pid: 2912, name: 'vector log shipper', user: 'observability', cpu: 9, memory: 5, uptime: '18d 03h', status: 'running' },
+        { pid: 3065, name: 'backup-agent', user: 'backup', cpu: 2, memory: 3, uptime: '7d 21h', status: 'idle' }
+      ],
+      alerts: [
+        { id: 1, severity: 'warning', title: 'Postgres replication lag above target', meta: 'postgres-primary, started 8 minutes ago', body: 'Follower db-02 has remained above 1 second lag for the last six samples.', resolved: false },
+        { id: 2, severity: 'danger', title: 'Log volume approaching capacity', meta: '/var/log, started 14 minutes ago', body: 'Usage reached 89% after the nightly import job produced a larger audit trail.', resolved: false },
+        { id: 3, severity: 'info', title: 'Deployment finished', meta: 'api-gateway v2.18.4, 37 minutes ago', body: 'Blue-green promotion completed with zero failed health probes.', resolved: true },
+        { id: 4, severity: 'warning', title: 'CPU burst detected', meta: 'prod-api-01, started 3 minutes ago', body: 'CPU crossed 80% twice during invoice export requests.', resolved: false }
+      ],
+      logs: [
+        { level: 'info', service: 'api-gateway', message: 'GET /v1/accounts completed in 38 ms' },
+        { level: 'warn', service: 'postgres', message: 'replication lag measured at 1.2 s for db-02' },
+        { level: 'info', service: 'worker', message: 'processed queue billing.export with 24 jobs remaining' },
+        { level: 'error', service: 'backup-agent', message: 'transient upload retry for snapshot manifest' },
+        { level: 'info', service: 'redis', message: 'cache hit ratio 94.7 percent over last sample' },
+        { level: 'warn', service: 'system', message: '/var/log disk utilization reached 89 percent' }
+      ],
+      trend: {
+        cpu: [52, 55, 57, 61, 58, 64, 68, 71, 66, 69, 73, 70, 68, 74, 72, 69, 67, 71],
+        memory: [49, 50, 51, 52, 53, 55, 56, 57, 58, 59, 60, 61, 60, 62, 63, 62, 61, 62],
+        network: [20, 24, 28, 25, 31, 35, 38, 34, 42, 39, 45, 43, 47, 44, 46, 49, 45, 44]
+      }
+    };
+
+    const elements = {
+      metricGrid: document.querySelector('#metricGrid'),
+      serviceList: document.querySelector('#serviceList'),
+      storageList: document.querySelector('#storageList'),
+      networkList: document.querySelector('#networkList'),
+      maintenanceList: document.querySelector('#maintenanceList'),
+      processTable: document.querySelector('#processTable'),
+      processSearch: document.querySelector('#processSearch'),
+      processCount: document.querySelector('#processCount'),
+      killSelected: document.querySelector('#killSelected'),
+      alertList: document.querySelector('#alertList'),
+      alertFilter: document.querySelector('#alertFilter'),
+      logList: document.querySelector('#logList'),
+      logLevel: document.querySelector('#logLevel'),
+      pauseLive: document.querySelector('#pauseLive'),
+      runCheck: document.querySelector('#runCheck'),
+      exportReport: document.querySelector('#exportReport'),
+      lastUpdated: document.querySelector('#lastUpdated'),
+      currentWindow: document.querySelector('#currentWindow'),
+      availabilityValue: document.querySelector('#availabilityValue'),
+      requestValue: document.querySelector('#requestValue'),
+      latencyValue: document.querySelector('#latencyValue'),
+      activeAlertValue: document.querySelector('#activeAlertValue'),
+      chart: document.querySelector('#trendChart'),
+      toastStack: document.querySelector('#toastStack'),
+      settingsModal: document.querySelector('#settingsModal'),
+      settingsOpen: document.querySelector('#settingsOpen'),
+      settingsClose: document.querySelector('#settingsClose'),
+      settingsCancel: document.querySelector('#settingsCancel'),
+      settingsForm: document.querySelector('#settingsForm'),
+      sampleRate: document.querySelector('#sampleRate'),
+      notifyWarnings: document.querySelector('#notifyWarnings'),
+      showResolved: document.querySelector('#showResolved'),
+      themeToggle: document.querySelector('#themeToggle'),
+      watchRuleForm: document.querySelector('#watchRuleForm'),
+      resetRule: document.querySelector('#resetRule'),
+      ruleMessage: document.querySelector('#ruleMessage'),
+      clearLogs: document.querySelector('#clearLogs')
+    };
+
+    let liveTimer = null;
+
+    const formatTime = () => new Intl.DateTimeFormat('en', {
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit'
+    }).format(new Date());
+
+    const clamp = (value, min, max) => Math.min(Math.max(value, min), max);
+
+    const randomDrift = (value, amount, min, max) => {
+      const drift = Math.round((Math.random() * amount * 2) - amount);
+      return clamp(value + drift, min, max);
+    };
+
+    const getSeverity = (metric) => {
+      if (metric.value >= metric.danger) {
+        return 'danger';
+      }
+      if (metric.value >= metric.warn) {
+        return 'warning';
+      }
+      return 'healthy';
+    };
+
+    const getBadgeClass = (status) => {
+      if (status === 'danger') {
+        return 'badge badge--danger';
+      }
+      if (status === 'warning') {
+        return 'badge badge--warning';
+      }
+      if (status === 'info') {
+        return 'badge badge--info';
+      }
+      return 'badge';
+    };
+
+    const getMetricStatusLabel = (severity) => {
+      const labels = {
+        healthy: 'OK',
+        warning: 'WARN',
+        danger: 'CRIT'
+      };
+      return labels[severity];
+    };
+
+    const showToast = (title, message, severity = 'info') => {
+      const toast = document.createElement('div');
+      toast.className = `toast ${severity === 'warning' ? 'toast--warning' : ''} ${severity === 'danger' ? 'toast--danger' : ''}`;
+      toast.innerHTML = `
+        <div class="toast__title">${title}</div>
+        <div class="toast__message">${message}</div>
+      `;
+      elements.toastStack.appendChild(toast);
+      window.setTimeout(() => toast.remove(), 4200);
+    };
+
+    const renderMetrics = () => {
+      elements.metricGrid.innerHTML = serverState.metrics.map((metric) => {
+        const severity = getSeverity(metric);
+        return `
+          <article class="panel metric ${severity === 'warning' ? 'metric--warning' : ''} ${severity === 'danger' ? 'metric--danger' : ''}">
+            <div class="metric__top">
+              <span class="metric__label">${metric.label}</span>
+              <span class="metric__status ${severity === 'warning' ? 'metric__status--warn' : ''} ${severity === 'danger' ? 'metric__status--danger' : ''}">${getMetricStatusLabel(severity)}</span>
+            </div>
+            <div class="metric__value">${metric.value}<span class="metric__unit">${metric.unit}</span></div>
+            <progress class="metric__meter" value="${metric.value}" max="100" aria-label="${metric.label} ${metric.value}${metric.unit}">${metric.value}${metric.unit}</progress>
+            <p class="metric__detail">${metric.detail}</p>
+          </article>
+        `;
+      }).join('');
+    };
+
+    const renderHealthList = (listElement, items) => {
+      listElement.innerHTML = items.map((item) => `
+        <li class="health-item">
+          <div class="health-item__top">
+            <span class="health-item__name">${item.name}</span>
+            <span class="${getBadgeClass(item.status)}">${item.status}</span>
+          </div>
+          <span class="health-item__meta">${item.meta}</span>
+        </li>
+      `).join('');
+    };
+
+    const renderProcesses = () => {
+      const search = elements.processSearch.value.trim().toLowerCase();
+      const filteredProcesses = serverState.processes
+        .filter((process) => `${process.pid} ${process.name} ${process.user} ${process.status}`.toLowerCase().includes(search))
+        .sort((a, b) => b.cpu - a.cpu);
+
+      elements.processTable.innerHTML = filteredProcesses.map((process) => `
+        <tr class="process-row ${serverState.selectedProcessPid === process.pid ? 'process-row--selected' : ''}" data-pid="${process.pid}">
+          <td class="table__mono">${process.pid}</td>
+          <td>${process.name}</td>
+          <td>${process.user}</td>
+          <td>
+            <span class="progress-inline">
+              <span>${process.cpu}%</span>
+              <progress class="progress-inline__meter" value="${process.cpu}" max="100" aria-label="${process.name} CPU ${process.cpu}%">${process.cpu}%</progress>
+            </span>
+          </td>
+          <td>
+            <span class="progress-inline">
+              <span>${process.memory}%</span>
+              <progress class="progress-inline__meter" value="${process.memory}" max="100" aria-label="${process.name} memory ${process.memory}%">${process.memory}%</progress>
+            </span>
+          </td>
+          <td>${process.uptime}</td>
+          <td><span class="${process.status === 'idle' ? 'badge badge--info' : 'badge'}">${process.status}</span></td>
+        </tr>
+      `).join('');
+      elements.processCount.textContent = `${filteredProcesses.length} process${filteredProcesses.length === 1 ? '' : 'es'} visible`;
+      elements.killSelected.disabled = !serverState.selectedProcessPid;
+    };
+
+    const renderAlerts = () => {
+      const filter = elements.alertFilter.value;
+      const alerts = serverState.alerts.filter((alert) => {
+        const matchesFilter = filter === 'all' || alert.severity === filter;
+        const matchesResolved = serverState.showResolved || !alert.resolved;
+        return matchesFilter && matchesResolved;
+      });
+
+      elements.alertList.innerHTML = alerts.map((alert) => `
+        <li class="alert-item alert-item--${alert.severity} ${alert.resolved ? 'alert-item--resolved' : ''}" data-alert-id="${alert.id}">
+          <div class="alert-item__top">
+            <div>
+              <h3 class="alert-item__title">${alert.title}</h3>
+              <p class="alert-item__meta">${alert.meta}</p>
+            </div>
+            <span class="${getBadgeClass(alert.severity)}">${alert.resolved ? 'resolved' : alert.severity}</span>
+          </div>
+          <p>${alert.body}</p>
+          <div class="alert-item__actions">
+            <button class="button button--secondary" type="button" data-alert-action="resolve">${alert.resolved ? 'Reopen' : 'Resolve'}</button>
+            <button class="button button--ghost" type="button" data-alert-action="silence">Silence 30m</button>
+          </div>
+        </li>
+      `).join('') || '<li class="health-item"><span class="health-item__name">No matching alerts</span><span class="health-item__meta">Current filters returned an empty queue.</span></li>';
+
+      elements.activeAlertValue.textContent = serverState.alerts.filter((alert) => !alert.resolved).length;
+    };
+
+    const renderLogs = () => {
+      const level = elements.logLevel.value;
+      const logs = serverState.logs.filter((log) => level === 'all' || log.level === level).slice(0, 80);
+      elements.logList.innerHTML = logs.map((log) => `
+        <div class="log-entry">
+          <span class="log-entry__time">${log.time || formatTime()}</span>
+          <span class="log-entry__level log-entry__level--${log.level}">${log.level.toUpperCase()}</span>
+          <span>[${log.service}] ${log.message}</span>
+        </div>
+      `).join('') || '<div class="log-entry"><span class="log-entry__time">--:--:--</span><span class="log-entry__level log-entry__level--info">INFO</span><span>No logs match the current filter.</span></div>';
+    };
+
+    const drawTrendChart = () => {
+      const canvas = elements.chart;
+      const context = canvas.getContext('2d');
+      const width = canvas.width;
+      const height = canvas.height;
+      const padding = 34;
+      const plotWidth = width - padding * 2;
+      const plotHeight = height - padding * 2;
+      const colors = {
+        cpu: '#004040',
+        memory: '#2f6fb3',
+        network: '#ffdf00'
+      };
+
+      context.clearRect(0, 0, width, height);
+      context.fillStyle = '#ffffff';
+      context.fillRect(0, 0, width, height);
+
+      context.strokeStyle = '#dce3df';
+      context.lineWidth = 1;
+      context.font = '12px -apple-system, BlinkMacSystemFont, Segoe UI, sans-serif';
+      context.fillStyle = '#69736f';
+
+      for (let line = 0; line <= 4; line += 1) {
+        const y = padding + (plotHeight / 4) * line;
+        context.beginPath();
+        context.moveTo(padding, y);
+        context.lineTo(width - padding, y);
+        context.stroke();
+        context.fillText(`${100 - line * 25}`, 8, y + 4);
+      }
+
+      Object.entries(serverState.trend).forEach(([key, values]) => {
+        context.beginPath();
+        context.strokeStyle = colors[key];
+        context.lineWidth = 3;
+        values.forEach((value, index) => {
+          const x = padding + (plotWidth / (values.length - 1)) * index;
+          const y = padding + plotHeight - (value / 100) * plotHeight;
+          if (index === 0) {
+            context.moveTo(x, y);
+          } else {
+            context.lineTo(x, y);
+          }
+        });
+        context.stroke();
+
+        values.forEach((value, index) => {
+          const x = padding + (plotWidth / (values.length - 1)) * index;
+          const y = padding + plotHeight - (value / 100) * plotHeight;
+          context.beginPath();
+          context.arc(x, y, 3.2, 0, Math.PI * 2);
+          context.fillStyle = colors[key];
+          context.fill();
+        });
+      });
+    };
+
+    const renderSummary = () => {
+      const cpu = serverState.metrics.find((metric) => metric.key === 'cpu').value;
+      const memory = serverState.metrics.find((metric) => metric.key === 'memory').value;
+      const requests = 1700 + cpu * 2 + serverState.tick * 3;
+      const latency = 28 + Math.round(memory / 4);
+      const availability = 99.97 + (100 - cpu) / 4000;
+
+      elements.availabilityValue.textContent = `${availability.toFixed(3)}%`;
+      elements.requestValue.textContent = `${requests.toLocaleString()}/min`;
+      elements.latencyValue.textContent = `${latency} ms`;
+      elements.lastUpdated.textContent = `prod-api-01 is serving customer traffic from us-east-1a. Latest sample received at ${formatTime()}.`;
+      elements.currentWindow.textContent = `Live window: ${serverState.range < 60 ? `${serverState.range} minutes` : `${serverState.range / 60} hours`}`;
+    };
+
+    const renderAll = () => {
+      renderMetrics();
+      renderHealthList(elements.serviceList, serverState.services);
+      renderHealthList(elements.storageList, serverState.storage);
+      renderHealthList(elements.networkList, serverState.network);
+      renderHealthList(elements.maintenanceList, serverState.maintenance);
+      renderProcesses();
+      renderAlerts();
+      renderLogs();
+      renderSummary();
+      drawTrendChart();
+    };
+
+    const appendLog = (level, service, message) => {
+      serverState.logs.unshift({ level, service, message, time: formatTime() });
+      renderLogs();
+    };
+
+    const sampleMetrics = () => {
+      serverState.tick += 1;
+      serverState.metrics = serverState.metrics.map((metric) => {
+        const max = metric.unit === 'MB/s' ? 95 : 98;
+        const min = metric.key === 'network' ? 8 : 25;
+        return { ...metric, value: randomDrift(metric.value, 5, min, max) };
+      });
+
+      serverState.trend.cpu.push(serverState.metrics.find((metric) => metric.key === 'cpu').value);
+      serverState.trend.memory.push(serverState.metrics.find((metric) => metric.key === 'memory').value);
+      serverState.trend.network.push(serverState.metrics.find((metric) => metric.key === 'network').value);
+
+      Object.keys(serverState.trend).forEach((key) => {
+        serverState.trend[key] = serverState.trend[key].slice(-18);
+      });
+
+      serverState.processes = serverState.processes.map((process) => ({
+        ...process,
+        cpu: randomDrift(process.cpu, 4, process.status === 'idle' ? 1 : 3, 94),
+        memory: randomDrift(process.memory, 2, 1, 88)
+      }));
+
+      const cpu = serverState.metrics.find((metric) => metric.key === 'cpu').value;
+      const disk = serverState.metrics.find((metric) => metric.key === 'disk').value;
+
+      if (serverState.notifyWarnings && cpu > 84 && serverState.tick % 3 === 0) {
+        showToast('CPU warning', `CPU load sampled at ${cpu}%.`, 'warning');
+        appendLog('warn', 'system', `CPU load sampled at ${cpu} percent`);
+      }
+
+      if (serverState.notifyWarnings && disk > 88 && serverState.tick % 4 === 0) {
+        showToast('Disk pressure', `/data usage sampled at ${disk}%.`, 'danger');
+        appendLog('error', 'system', `/data usage sampled at ${disk} percent`);
+      }
+
+      if (serverState.tick % 2 === 0) {
+        appendLog('info', 'api-gateway', `GET /v1/health completed in ${32 + Math.round(cpu / 5)} ms`);
+      }
+
+      renderMetrics();
+      renderProcesses();
+      renderSummary();
+      drawTrendChart();
+    };
+
+    const startLiveSampling = () => {
+      window.clearInterval(liveTimer);
+      if (serverState.live) {
+        liveTimer = window.setInterval(sampleMetrics, serverState.sampleRate);
+      }
+    };
+
+    const switchView = (target) => {
+      document.querySelectorAll('[data-view]').forEach((view) => {
+        view.classList.toggle('view--active', view.dataset.view === target);
+      });
+      document.querySelectorAll('[data-view-target]').forEach((button) => {
+        if (button.dataset.viewTarget === target) {
+          button.setAttribute('aria-current', 'page');
+        } else {
+          button.removeAttribute('aria-current');
+        }
+      });
+    };
+
+    const setDarkMode = (enabled) => {
+      serverState.dark = enabled;
+      document.documentElement.classList.toggle('theme-dark', enabled);
+      drawTrendChart();
+    };
+
+    document.querySelectorAll('[data-view-target]').forEach((button) => {
+      button.addEventListener('click', () => switchView(button.dataset.viewTarget));
+    });
+
+    document.querySelectorAll('[data-range]').forEach((button) => {
+      button.addEventListener('click', () => {
+        serverState.range = Number(button.dataset.range);
+        document.querySelectorAll('[data-range]').forEach((rangeButton) => {
+          rangeButton.setAttribute('aria-pressed', String(rangeButton === button));
+        });
+        renderSummary();
+        showToast('Range updated', `Chart window set to ${button.textContent}.`);
+      });
+    });
+
+    elements.pauseLive.addEventListener('click', () => {
+      serverState.live = !serverState.live;
+      elements.pauseLive.textContent = serverState.live ? 'Pause' : 'Resume';
+      startLiveSampling();
+      showToast(serverState.live ? 'Live sampling resumed' : 'Live sampling paused', `Sample rate is ${serverState.sampleRate / 1000} seconds.`);
+    });
+
+    elements.runCheck.addEventListener('click', () => {
+      sampleMetrics();
+      renderHealthList(elements.serviceList, serverState.services.map((service) => ({ ...service, meta: `${service.meta} checked ${formatTime()}` })));
+      showToast('Health check completed', 'All probes returned within expected thresholds.');
+    });
+
+    elements.exportReport.addEventListener('click', () => {
+      const report = {
+        server: 'prod-api-01',
+        generatedAt: new Date().toISOString(),
+        metrics: serverState.metrics,
+        activeAlerts: serverState.alerts.filter((alert) => !alert.resolved)
+      };
+      const blob = new Blob([JSON.stringify(report, null, 2)], { type: 'application/json' });
+      const url = URL.createObjectURL(blob);
+      const link = document.createElement('a');
+      link.href = url;
+      link.download = 'server-health-report.json';
+      link.click();
+      URL.revokeObjectURL(url);
+      showToast('Report exported', 'server-health-report.json was generated.');
+    });
+
+    elements.processSearch.addEventListener('input', renderProcesses);
+
+    elements.processTable.addEventListener('click', (event) => {
+      const row = event.target.closest('tr[data-pid]');
+      if (!row) {
+        return;
+      }
+      serverState.selectedProcessPid = Number(row.dataset.pid);
+      renderProcesses();
+    });
+
+    elements.killSelected.addEventListener('click', () => {
+      const selectedProcess = serverState.processes.find((process) => process.pid === serverState.selectedProcessPid);
+      if (!selectedProcess) {
+        return;
+      }
+      selectedProcess.status = 'stopping';
+      selectedProcess.cpu = 0;
+      appendLog('warn', 'system', `operator requested stop for PID ${selectedProcess.pid} ${selectedProcess.name}`);
+      showToast('Stop signal sent', `${selectedProcess.name} is marked as stopping.`, 'warning');
+      serverState.selectedProcessPid = null;
+      renderProcesses();
+    });
+
+    elements.alertFilter.addEventListener('change', renderAlerts);
+
+    elements.alertList.addEventListener('click', (event) => {
+      const button = event.target.closest('[data-alert-action]');
+      const item = event.target.closest('[data-alert-id]');
+      if (!button || !item) {
+        return;
+      }
+      const alert = serverState.alerts.find((entry) => entry.id === Number(item.dataset.alertId));
+      if (!alert) {
+        return;
+      }
+      if (button.dataset.alertAction === 'resolve') {
+        alert.resolved = !alert.resolved;
+        showToast(alert.resolved ? 'Alert resolved' : 'Alert reopened', alert.title);
+      }
+      if (button.dataset.alertAction === 'silence') {
+        alert.resolved = true;
+        showToast('Alert silenced', `${alert.title} will stay quiet for 30 minutes.`);
+      }
+      renderAlerts();
+    });
+
+    elements.logLevel.addEventListener('change', renderLogs);
+
+    elements.clearLogs.addEventListener('click', () => {
+      serverState.logs = [];
+      renderLogs();
+      showToast('Logs cleared', 'The visible log buffer is empty.');
+    });
+
+    elements.watchRuleForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      const formData = new FormData(elements.watchRuleForm);
+      const name = formData.get('ruleName').trim();
+      const threshold = Number(formData.get('ruleThreshold'));
+      const target = formData.get('ruleTarget').trim();
+
+      if (!name || Number.isNaN(threshold) || threshold < 1 || threshold > 100 || !target.includes('@')) {
+        elements.ruleMessage.textContent = 'Enter a valid rule, threshold, and notification target.';
+        return;
+      }
+
+      elements.ruleMessage.textContent = `${name} saved at ${threshold}% for ${target}.`;
+      appendLog('info', 'watch-rule', `${name} threshold saved at ${threshold} percent`);
+      showToast('Watch rule saved', `${name} will notify ${target}.`);
+    });
+
+    elements.resetRule.addEventListener('click', () => {
+      elements.watchRuleForm.reset();
+      elements.ruleMessage.textContent = 'Rule form reset.';
+    });
+
+    const openSettings = () => {
+      elements.settingsModal.classList.add('modal--open');
+      elements.sampleRate.value = String(serverState.sampleRate);
+      elements.notifyWarnings.checked = serverState.notifyWarnings;
+      elements.showResolved.checked = serverState.showResolved;
+      elements.sampleRate.focus();
+    };
+
+    const closeSettings = () => {
+      elements.settingsModal.classList.remove('modal--open');
+      elements.settingsOpen.focus();
+    };
+
+    elements.settingsOpen.addEventListener('click', openSettings);
+    elements.settingsClose.addEventListener('click', closeSettings);
+    elements.settingsCancel.addEventListener('click', closeSettings);
+
+    elements.settingsModal.addEventListener('click', (event) => {
+      if (event.target === elements.settingsModal) {
+        closeSettings();
+      }
+    });
+
+    elements.settingsForm.addEventListener('submit', (event) => {
+      event.preventDefault();
+      serverState.sampleRate = Number(elements.sampleRate.value);
+      serverState.notifyWarnings = elements.notifyWarnings.checked;
+      serverState.showResolved = elements.showResolved.checked;
+      startLiveSampling();
+      renderAlerts();
+      closeSettings();
+      showToast('Settings applied', `Sampling every ${serverState.sampleRate / 1000} seconds.`);
+    });
+
+    elements.themeToggle.addEventListener('click', () => {
+      setDarkMode(!serverState.dark);
+      showToast('Theme updated', serverState.dark ? 'Dark mode is active.' : 'Light mode is active.');
+    });
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && elements.settingsModal.classList.contains('modal--open')) {
+        closeSettings();
+      }
+    });
+
+    window.addEventListener('resize', drawTrendChart);
+
+    renderAll();
+    startLiveSampling();
+  </script>
+</body>
+</html>
